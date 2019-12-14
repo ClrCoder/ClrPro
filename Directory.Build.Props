@@ -1,0 +1,11 @@
+<Project>
+  <PropertyGroup>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <LangVersion>preview</LangVersion>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(SolutionDir)\JetBrainsAnnotations.Generated.cs"
+             Link="Properties\JetBrainsAnnotations.Generated.cs" />
+  </ItemGroup>
+</Project>
