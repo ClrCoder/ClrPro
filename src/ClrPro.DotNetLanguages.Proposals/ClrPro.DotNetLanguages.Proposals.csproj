@@ -3,6 +3,35 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
     <RootNamespace>System</RootNamespace>
+    <Title>DotNet languages proposals preview/polyfills code.</Title>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Dmitrii Ivanov</Authors>
+    <Company>ClrCoder community</Company>
+    <Product>ClrPro</Product>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageProjectUrl>https://github.com/ClrCoder/ClrPro</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/ClrCoder/ClrPro</RepositoryUrl>
+    <PackageTags>using statement; C#; IDisposable, ILifetimeExplicit</PackageTags>
+    <RepositoryType>git</RepositoryType>
+    <Copyright>ClrCoder community</Copyright>
+    <Description>.Net Languages improvement proposals code. 
+Contains: 
+ - ILifetimeExplicit and related classes, replacement for IDisposal for certain use cases.
+ - using statement improvement proposals polyfills,
+</Description>
+    <PackageIcon>ClrCoderLogo.png</PackageIcon>
+    <PackageIconUrl />
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\assets\ClrCoderLogo.png" Link="Properties\ClrCoderLogo.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+    <None Include="..\..\LICENSE" Link="Properties\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
 
 </Project>
