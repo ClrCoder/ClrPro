@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using JetBrains.Annotations;
 
 namespace System
@@ -7,7 +8,7 @@ namespace System
     ///     Explicit lifetime object suitable for async environment.
     /// </summary>
     [PublicAPI]
-    public interface IAsyncLifetimeExplicit
+    public interface IAsyncLifetimeExplicit : IAsyncCodeScopeExtension
     {
         /// <summary>
         ///     Gracefully finishes lifetime of the object. Supports one and only one invocation.
@@ -36,5 +37,10 @@ namespace System
         /// </remarks>
         /// <returns>Asynchronous operation which finishes lifetime of the object.</returns>
         ValueTask DisposeAsync();
+
+        ValueTask IAsyncCodeScopeExtension.OnLooseCodeScopeAsync(Exception? exception)
+        {
+            return DisposeAsync();
+        }
     }
 }

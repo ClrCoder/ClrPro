@@ -1,4 +1,5 @@
-﻿using JetBrains.Annotations;
+﻿using System.Runtime.CompilerServices;
+using JetBrains.Annotations;
 
 namespace System
 {
@@ -6,7 +7,7 @@ namespace System
     ///     The object with the explicit lifetime.
     /// </summary>
     [PublicAPI]
-    public interface ILifetimeExplicit
+    public interface ILifetimeExplicit : ICodeScopeExtension
     {
         /// <summary>
         ///     Gracefully finishes lifetime of the object. Supports one and only one invocation.
@@ -34,5 +35,10 @@ namespace System
         ///     </list>
         /// </remarks>
         void Dispose();
+
+        void ICodeScopeExtension.OnLooseCodeScope(Exception? exception)
+        {
+            Dispose();
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using JetBrains.Annotations;
 
 namespace System
@@ -16,5 +17,10 @@ namespace System
         /// <param name="reasonException">The error caused lifetime termination.</param>
         /// <returns>Async terminate operation task.</returns>
         ValueTask TerminateAsync(Exception reasonException);
+
+        ValueTask IAsyncCodeScopeExtension.OnLooseCodeScopeAsync(Exception? exception)
+        {
+            return exception == null ? DisposeAsync() : TerminateAsync(exception);
+        }
     }
 }

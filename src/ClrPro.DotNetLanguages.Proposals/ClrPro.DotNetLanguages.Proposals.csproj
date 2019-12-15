@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
     <RootNamespace>System</RootNamespace>
+    <Version>1.1.0</Version>
     <Title>DotNet languages proposals preview/polyfills code.</Title>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Dmitrii Ivanov</Authors>
@@ -11,14 +12,16 @@
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageProjectUrl>https://github.com/ClrCoder/ClrPro</PackageProjectUrl>
     <RepositoryUrl>https://github.com/ClrCoder/ClrPro</RepositoryUrl>
-    <PackageTags>using statement; C#; IDisposable, ILifetimeExplicit</PackageTags>
+    <PackageTags>using; IDisposable; IAsyncDisposable; Exception</PackageTags>
     <RepositoryType>git</RepositoryType>
     <Copyright>ClrCoder community</Copyright>
-    <Description>.Net Languages improvement proposals code. 
-Contains: 
- - ILifetimeExplicit and related classes, replacement for IDisposal for certain use cases.
- - using statement improvement proposals polyfills,
-</Description>
+    <Description>
+      .Net Languages improvement proposals code.
+      Contains:
+      - I(Async)CodeScopeExtension interfaces, generalizes using operator.
+      - I(Async)LifetimeExplicit, I(Async)LifetimeTerminable, I(Async)LifetimeObservable interfaces.
+      - using operator polyfill extension methods: Using, UsingAsync.
+    </Description>
     <PackageIcon>ClrCoderLogo.png</PackageIcon>
     <PackageIconUrl />
   </PropertyGroup>

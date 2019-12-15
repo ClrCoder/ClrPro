@@ -1,4 +1,5 @@
-﻿using JetBrains.Annotations;
+﻿using System.Runtime.CompilerServices;
+using JetBrains.Annotations;
 
 namespace System
 {
@@ -13,9 +14,14 @@ namespace System
         ///     invocation.
         /// </summary>
         /// <param name="reasonException">The error caused lifetime termination.</param>
-        void Terminate(Exception reasonException)
+        void Terminate(Exception reasonException);
+
+        void ICodeScopeExtension.OnLooseCodeScope(Exception? exception)
         {
-            Dispose();
+            if (exception == null)
+                Dispose();
+            else
+                Terminate(exception);
         }
     }
 }
