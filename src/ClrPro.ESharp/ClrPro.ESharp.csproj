@@ -1,0 +1,40 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <RootNamespace />
+    <Version>0.1.0</Version>
+    <Title>Emulation# (E#) - Upcoming C# language features polyfills and useful language extensions.</Title>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Dmitrii Ivanov</Authors>
+    <Company>ClrCoder community</Company>
+    <Product>ClrPro</Product>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageProjectUrl>https://github.com/ClrCoder/ClrPro</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/ClrCoder/ClrPro</RepositoryUrl>
+    <PackageTags>using; IDisposable; IAsyncDisposable; Exception, lambda expressions.</PackageTags>
+    <RepositoryType>git</RepositoryType>
+    <Copyright>ClrCoder community</Copyright>
+    <Description>
+      Add to the *.cs file header:
+      using static ClrPro.ESharp;
+      And use:
+      Using(out var tst, new MyScopeExtension()).Do(()=&gt;{ Console.WriteLine(tst.ToString());})
+      var myAction = Y(()=&gt;return 10); // myAction have type Func&lt;int&gt;;
+    </Description>
+    <PackageIcon>ClrCoderLogo.png</PackageIcon>
+    <PackageIconUrl />
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\assets\ClrCoderLogo.png" Link="Properties\ClrCoderLogo.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+    <None Include="..\..\LICENSE" Link="Properties\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+</Project>

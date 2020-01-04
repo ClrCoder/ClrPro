@@ -20,8 +20,4 @@
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\src\ClrPro.DotNetLanguages.Proposals\ClrPro.DotNetLanguages.Proposals.csproj" />
-  </ItemGroup>
-
 </Project>

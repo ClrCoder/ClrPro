@@ -5,17 +5,25 @@ VisualStudioVersion = 16.0.29609.76
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F9097D4E-478A-4480-808E-4DF5D422E614}"
 	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		Analyzers.ruleset = Analyzers.ruleset
 		Directory.Build.Props = Directory.Build.Props
+		stylecop.json = stylecop.json
 	EndProjectSection
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClrPro.DotNetLanguages.Proposals", "src\ClrPro.DotNetLanguages.Proposals\ClrPro.DotNetLanguages.Proposals.csproj", "{D2578212-7DFC-4C5F-8AF4-7E7961B09BA2}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClrPro.DotNetLanguages.Proposals.Tests", "test\ClrPro.DotNetLanguages.Proposals.Tests\ClrPro.DotNetLanguages.Proposals.Tests.csproj", "{F5DA4EC5-5901-4EF3-8FCF-7A1547F1B685}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{CD219B59-99C9-4462-8B3A-FF441429CDDC}"
 	ProjectSection(SolutionItems) = preProject
+		test\Analyzers.Tests.ruleset = test\Analyzers.Tests.ruleset
 		test\Directory.Build.Props = test\Directory.Build.Props
 	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClrPro.Extensions.System", "src\ClrPro.Extensions.System\ClrPro.Extensions.System.csproj", "{4637BE32-52FE-4FC8-9DB3-B73D511A8378}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClrPro.ESharp", "src\ClrPro.ESharp\ClrPro.ESharp.csproj", "{1E2FA561-6841-4CAA-9C8F-C719586037C3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClrPro.ESharp.Tests", "test\ClrPro.ESharp.Tests\ClrPro.ESharp.Tests.csproj", "{D5525A2E-D27B-4895-A511-ED85538D176F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClrPro.Extensions.System.Tests", "test\ClrPro.Extensions.System.Tests\ClrPro.Extensions.System.Tests.csproj", "{22BAC9D2-0F3C-418E-9F89-2FD1E5678F8C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,14 +31,22 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D2578212-7DFC-4C5F-8AF4-7E7961B09BA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D2578212-7DFC-4C5F-8AF4-7E7961B09BA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D2578212-7DFC-4C5F-8AF4-7E7961B09BA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D2578212-7DFC-4C5F-8AF4-7E7961B09BA2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F5DA4EC5-5901-4EF3-8FCF-7A1547F1B685}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F5DA4EC5-5901-4EF3-8FCF-7A1547F1B685}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F5DA4EC5-5901-4EF3-8FCF-7A1547F1B685}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F5DA4EC5-5901-4EF3-8FCF-7A1547F1B685}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4637BE32-52FE-4FC8-9DB3-B73D511A8378}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4637BE32-52FE-4FC8-9DB3-B73D511A8378}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4637BE32-52FE-4FC8-9DB3-B73D511A8378}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4637BE32-52FE-4FC8-9DB3-B73D511A8378}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E2FA561-6841-4CAA-9C8F-C719586037C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E2FA561-6841-4CAA-9C8F-C719586037C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E2FA561-6841-4CAA-9C8F-C719586037C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E2FA561-6841-4CAA-9C8F-C719586037C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5525A2E-D27B-4895-A511-ED85538D176F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5525A2E-D27B-4895-A511-ED85538D176F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5525A2E-D27B-4895-A511-ED85538D176F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5525A2E-D27B-4895-A511-ED85538D176F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22BAC9D2-0F3C-418E-9F89-2FD1E5678F8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22BAC9D2-0F3C-418E-9F89-2FD1E5678F8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22BAC9D2-0F3C-418E-9F89-2FD1E5678F8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22BAC9D2-0F3C-418E-9F89-2FD1E5678F8C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

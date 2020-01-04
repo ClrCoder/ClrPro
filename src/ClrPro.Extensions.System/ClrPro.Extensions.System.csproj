@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <RootNamespace></RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="AsyncLifetimeObservable.cs" />
+    <Compile Remove="System\RuntimeEnvironmentExtensions.NoThrowInvoke.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ClrPro.ESharp\ClrPro.ESharp.csproj" />
+  </ItemGroup>
+
+</Project>
