@@ -13,7 +13,7 @@ namespace ClrPro.ESharpLang
     public partial struct AsyncUsingExpression<T>
     {
         /// <summary>
-        ///     Eval clause of the emulated using operator syntax (in a case when using block will be able to be an expression).
+        ///     Eval clause of the emulated using operator syntax (will not be supported by the C# language).
         /// </summary>
         /// <typeparam name="TResult">The eval result type.</typeparam>
         /// <param name="code">The code block of the using operator with return value.</param>
@@ -22,6 +22,10 @@ namespace ClrPro.ESharpLang
         ///     to the captured context; otherwise, <see langword="false" /> .
         /// </param>
         /// <returns>The asynchronous result that the code block produces.</returns>
+        /// <remarks>
+        ///     <see cref="ICodeScopeExtension.IsRethrowRequired" /> will never be called. Exception will be rethrown
+        ///     unconditionally.
+        /// </remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public async ValueTask<TResult> EvalAsync<TResult>(
             Func<ValueTask<TResult>> code,
@@ -54,7 +58,7 @@ namespace ClrPro.ESharpLang
         }
 
         /// <summary>
-        ///     Eval clause of the emulated using operator syntax (in a case when using block will be able to be an expression).
+        ///     Eval clause of the emulated using operator syntax (will not be supported by the C# language).
         /// </summary>
         /// <typeparam name="TResult">The eval result type.</typeparam>
         /// <param name="code">The code block of the using operator with return value.</param>
@@ -63,6 +67,10 @@ namespace ClrPro.ESharpLang
         ///     to the captured context; otherwise, <see langword="false" /> .
         /// </param>
         /// <returns>The asynchronous result that the code block produces.</returns>
+        /// <remarks>
+        ///     <see cref="ICodeScopeExtension.IsRethrowRequired" /> will never be called. Exception will be rethrown
+        ///     unconditionally.
+        /// </remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public async ValueTask<TResult> EvalAsync<TResult>(
             Func<T, ValueTask<TResult>> code,
@@ -95,7 +103,7 @@ namespace ClrPro.ESharpLang
         }
 
         /// <summary>
-        ///     Eval clause of the emulated using operator syntax (in a case when using block will be able to be an expression).
+        ///     Eval clause of the emulated using operator syntax (will not be supported by the C# language).
         /// </summary>
         /// <typeparam name="TResult">The eval result type.</typeparam>
         /// <param name="code">The code block of the using operator with return value.</param>
@@ -104,6 +112,10 @@ namespace ClrPro.ESharpLang
         ///     to the captured context; otherwise, <see langword="false" /> .
         /// </param>
         /// <returns>The asynchronous result that the code block produces.</returns>
+        /// <remarks>
+        ///     <see cref="ICodeScopeExtension.IsRethrowRequired" /> will never be called. Exception will be rethrown
+        ///     unconditionally.
+        /// </remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public async ValueTask<TResult> EvalTAsync<TResult>(
             Func<Task<TResult>> code,
@@ -136,7 +148,7 @@ namespace ClrPro.ESharpLang
         }
 
         /// <summary>
-        ///     Eval clause of the emulated using operator syntax (in a case when using block will be able to be an expression).
+        ///     Eval clause of the emulated using operator syntax (will not be supported by the C# language).
         /// </summary>
         /// <typeparam name="TResult">The eval result type.</typeparam>
         /// <param name="code">The code block of the using operator with return value.</param>
@@ -145,6 +157,10 @@ namespace ClrPro.ESharpLang
         ///     to the captured context; otherwise, <see langword="false" /> .
         /// </param>
         /// <returns>The asynchronous result that the code block produces.</returns>
+        /// <remarks>
+        ///     <see cref="ICodeScopeExtension.IsRethrowRequired" /> will never be called. Exception will be rethrown
+        ///     unconditionally.
+        /// </remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public async ValueTask<TResult> EvalTAsync<TResult>(
             Func<T, Task<TResult>> code,

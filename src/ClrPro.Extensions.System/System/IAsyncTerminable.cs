@@ -32,7 +32,10 @@ namespace System
         ///     <see langword="true" /> if object has been terminated by this call or <see langword="false" /> if object was
         ///     already closed/terminated.
         /// </returns>
-        bool TryTerminateAsync(Exception reasonException, out ValueTask terminateTask);
+        bool TryTerminateAsync(Exception reasonException, out ValueTask terminateTask)
+        {
+            return TryCloseAsync(reasonException, out terminateTask);
+        }
 
         /// <summary>
         ///     Terminates the object asynchronously, or raises <see cref="ObjectClosedException" /> if the object was already

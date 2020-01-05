@@ -2,13 +2,17 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
-    <RootNamespace></RootNamespace>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <RootNamespace />
+    <Version>0.1.0</Version>
+    <Title>Base class library essential extensions and polyfills.</Title>
+    <Authors>Dmitrii Ivanov</Authors>
+    <PackageTags>ICloseable, Runtime, Exception.</PackageTags>
+    <Description>
+      ICloseable, IAsyncCloseable provides clear semantic of a lifetime.
+      IRuntimeEnvironment provides exception handling policy injection.
+    </Description>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Compile Remove="AsyncLifetimeObservable.cs" />
-    <Compile Remove="System\RuntimeEnvironmentExtensions.NoThrowInvoke.cs" />
-  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\ClrPro.ESharp\ClrPro.ESharp.csproj" />

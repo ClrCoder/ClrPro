@@ -3,8 +3,6 @@
 
 namespace System
 {
-    using System.Runtime.ExceptionServices;
-
     /// <summary>
     ///     <see cref="IRuntimeEnvironment" /> implementation that is most close to the CLR Runtime behavior.
     /// </summary>
@@ -13,7 +11,7 @@ namespace System
         /// <inheritdoc />
         public void ProcessUnhandledException(Exception unhandledException)
         {
-            ExceptionDispatchInfo.Capture(unhandledException).Throw();
+            throw new UnhandledException(unhandledException);
         }
     }
 }

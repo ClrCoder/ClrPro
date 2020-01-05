@@ -12,7 +12,7 @@ namespace System
     public static class ClosableExtensions
     {
         /// <summary>
-        ///     Verifies if the object is not in <see cref="ClosingStatus.Alive" /> state, throws
+        ///     Verifies that the object is not in <see cref="ClosingStatus.Alive" /> state, throws
         ///     <see cref="ExplicitCloseMissingException" /> otherwise.
         /// </summary>
         /// <param name="closeable">The object whose state to check.</param>
@@ -31,7 +31,7 @@ namespace System
         }
 
         /// <summary>
-        ///     Verifies if the object is not in "alive" state, throws <see cref="ExplicitCloseMissingException" /> otherwise.
+        ///     Verifies that the object is not in "alive" state, throws <see cref="ExplicitCloseMissingException" /> otherwise.
         /// </summary>
         /// <param name="asyncCloseable">The object whose state to check.</param>
         /// <exception cref="ExplicitCloseMissingException">The object wasn't explicitly closed.</exception>

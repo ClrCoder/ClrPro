@@ -34,6 +34,9 @@ namespace System.Runtime.CompilerServices
         ///     Exception that was caused the scope loosing, or <see langword="null" /> for a normal execution
         ///     flow.
         /// </param>
+        /// <remarks>
+        ///     You can throw your own exception from this method, it will override the exception from the code block.
+        /// </remarks>
         void OnLoseCodeScope(Exception? exception);
     }
 }

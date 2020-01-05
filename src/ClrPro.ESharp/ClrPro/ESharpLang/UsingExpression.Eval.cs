@@ -12,7 +12,7 @@ namespace ClrPro.ESharpLang
     public partial struct UsingExpression<T>
     {
         /// <summary>
-        ///     Eval clause of the emulated using operator syntax (in a case when using block will be able to be an expression).
+        ///     Eval clause of the emulated using operator syntax (will not be supported by the C# language).
         /// </summary>
         /// <typeparam name="TResult">The result type.</typeparam>
         /// <param name="code">The code block of the using operator with return value.</param>
@@ -51,7 +51,7 @@ namespace ClrPro.ESharpLang
         }
 
         /// <summary>
-        ///     Eval clause of the emulated using operator syntax (in a case when using block will be able to be an expression).
+        ///     Eval clause of the emulated using operator syntax (will not be supported by the C# language).
         /// </summary>
         /// <typeparam name="TResult">The result type.</typeparam>
         /// <param name="code">The code block of the using operator with return value.</param>
@@ -85,7 +85,7 @@ namespace ClrPro.ESharpLang
             }
             finally
             {
-                ScopeExtension?.OnLoseCodeScope(exception);
+                ScopeExtension.OnLoseCodeScope(exception);
             }
         }
     }

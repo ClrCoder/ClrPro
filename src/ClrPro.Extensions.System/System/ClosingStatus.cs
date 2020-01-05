@@ -22,12 +22,12 @@ namespace System
         CloseRequested,
 
         /// <summary>
-        ///     Close is in-progress.
+        ///     Close operation is in-progress.
         /// </summary>
         Closing,
 
         /// <summary>
-        ///     Object disposed.
+        ///     Object close operation finished.
         /// </summary>
         Closed,
     }
