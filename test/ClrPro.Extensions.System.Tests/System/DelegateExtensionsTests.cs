@@ -1,13 +1,12 @@
 // Copyright (c) ClrCoder community. All Rights Reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
-namespace ClrPro.Extensions.System.Tests
+namespace System
 {
     using FluentAssertions;
-    using global::System;
     using Xunit;
     using Xunit.Abstractions;
-    using static ESharp;
+    using static ClrPro.ESharp;
 
     public class DelegateExtensionsTests
     {

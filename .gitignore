@@ -5,6 +5,7 @@
 
 # Sensitive files
 *.pfx
+*.snk
 
 # User-specific files
 *.suo

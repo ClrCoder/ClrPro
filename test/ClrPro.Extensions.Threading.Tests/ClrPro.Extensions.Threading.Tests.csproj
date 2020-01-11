@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace></RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\ClrPro.Extensions.Threading\ClrPro.Extensions.Threading.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Benchmarks\" />
+    <Folder Include="BuildingBlocks\" />
+  </ItemGroup>
+
+</Project>

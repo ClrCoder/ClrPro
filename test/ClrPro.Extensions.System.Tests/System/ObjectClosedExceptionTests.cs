@@ -1,12 +1,11 @@
 // Copyright (c) ClrCoder community. All Rights Reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
-namespace ClrPro.Extensions.System.Tests
+namespace System
 {
+    using System.Runtime.CompilerServices;
+    using System.Runtime.ExceptionServices;
     using FluentAssertions;
-    using global::System;
-    using global::System.Runtime.CompilerServices;
-    using global::System.Runtime.ExceptionServices;
     using Xunit;
 
     public class ObjectClosedExceptionTests

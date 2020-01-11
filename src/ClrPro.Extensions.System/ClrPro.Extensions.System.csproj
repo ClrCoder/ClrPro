@@ -4,7 +4,7 @@
     <TargetFramework>netstandard2.1</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <RootNamespace />
-    <Version>0.1.0</Version>
+    <VersionPrefix>0.1.1</VersionPrefix>
     <Title>Base class library essential extensions and polyfills.</Title>
     <Authors>Dmitrii Ivanov</Authors>
     <PackageTags>ICloseable, Runtime, Exception.</PackageTags>
@@ -12,7 +12,12 @@
       ICloseable, IAsyncCloseable provides clear semantic of a lifetime.
       IRuntimeEnvironment provides exception handling policy injection.
     </Description>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="4.5.2" />
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\ClrPro.ESharp\ClrPro.ESharp.csproj" />

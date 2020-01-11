@@ -14,7 +14,7 @@
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageIcon>ClrCoderLogo.png</PackageIcon>
     <PackageIconUrl />
-    <AssemblyOriginatorKeyFile>$(MSBuildThisFileDirectory)ClrPro.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>$(MSBuildThisFileDirectory)ClrPro.snk</AssemblyOriginatorKeyFile>
     <SignAssembly Condition="Exists($(AssemblyOriginatorKeyFile))">true</SignAssembly>
   </PropertyGroup>
 
