@@ -24,7 +24,7 @@ namespace System.Threading
         {
             var logger = new AccumulationLogger();
             var config = DefaultConfig.Instance.With(logger);
-            var summary = BenchmarkRunner.Run<InterlockedAlignmentBenchmark>(config);
+            BenchmarkRunner.Run<InterlockedAlignmentBenchmark>(config);
             _testOutput.WriteLine(logger.GetLog());
         }
     }

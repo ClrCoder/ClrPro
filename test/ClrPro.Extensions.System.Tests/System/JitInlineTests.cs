@@ -10,7 +10,7 @@ namespace System
 
     public class JitInlineTests
     {
-        private Counter _tst;
+        private Counter _tst = default;
 
         [Fact]
         public void Test()

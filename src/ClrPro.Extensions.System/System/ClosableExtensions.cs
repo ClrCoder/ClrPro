@@ -17,7 +17,7 @@ namespace System
         /// </summary>
         /// <param name="closeable">The object whose state to check.</param>
         /// <exception cref="ExplicitCloseMissingException">The object wasn't explicitly closed.</exception>
-        public static void VerifyCloseRequested(this ICloseable closeable)
+        public static void VerifyCloseRequested(this INotifyClosing closeable)
         {
             if (closeable == null)
             {
@@ -35,7 +35,7 @@ namespace System
         /// </summary>
         /// <param name="asyncCloseable">The object whose state to check.</param>
         /// <exception cref="ExplicitCloseMissingException">The object wasn't explicitly closed.</exception>
-        public static void VerifyCloseRequested(this IAsyncCloseable asyncCloseable)
+        public static void VerifyCloseRequested(this IAsyncNotifyClosing asyncCloseable)
         {
             if (asyncCloseable == null)
             {

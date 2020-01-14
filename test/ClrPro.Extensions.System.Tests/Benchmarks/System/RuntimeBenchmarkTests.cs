@@ -24,7 +24,7 @@ namespace System
         {
             var logger = new AccumulationLogger();
             var config = DefaultConfig.Instance.With(logger);
-            var summary = BenchmarkRunner.Run<RuntimeBenchmark>(config);
+            BenchmarkRunner.Run<RuntimeBenchmark>(config);
             _testOutput.WriteLine(logger.GetLog());
         }
     }

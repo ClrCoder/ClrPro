@@ -20,39 +20,6 @@ namespace System
     public interface IAsyncCloseable : IAsyncDisposable, IAsyncCodeScopeExtension
     {
         /// <summary>
-        ///     Lifetime status of the object.
-        /// </summary>
-        ClosingStatus ClosingStatus { get; }
-
-        /// <summary>
-        ///     Gets the <see cref="ValueTask" /> that becomes completed when the object switches to "close requested", "closing"
-        ///     or "closed" state.
-        /// </summary>
-        /// <remarks>
-        ///     Property getter could be called multiple times and each returned <see cref="ValueTask" /> should support
-        ///     one await.
-        /// </remarks>
-        ValueTask CloseRequested { get; }
-
-        /// <summary>
-        ///     Gets the <see cref="ValueTask" /> that becomes completed when the object switches to "closing" or "closed" state.
-        /// </summary>
-        /// <remarks>
-        ///     Property getter could be called multiple times and each returned <see cref="ValueTask" /> should support
-        ///     one await.
-        /// </remarks>
-        ValueTask Closing { get; }
-
-        /// <summary>
-        ///     Gets the <see cref="ValueTask" /> that becomes completed when the object switches to "closed" state.
-        /// </summary>
-        /// <remarks>
-        ///     Property getter could be called multiple times and each returned <see cref="ValueTask" /> should support
-        ///     one await.
-        /// </remarks>
-        ValueTask Closed { get; }
-
-        /// <summary>
         ///     Tries to close the object asynchronously, if close wasn't yet requested.
         /// </summary>
         /// <param name="closeTask">

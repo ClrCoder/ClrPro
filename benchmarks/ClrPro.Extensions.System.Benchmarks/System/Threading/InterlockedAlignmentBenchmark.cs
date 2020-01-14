@@ -1,10 +1,9 @@
 // Copyright (c) ClrCoder community. All Rights Reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
-namespace System
+namespace System.Threading
 {
     using System.Runtime.CompilerServices;
-    using System.Threading;
     using BenchmarkDotNet.Attributes;
 
     [InProcess]
@@ -14,7 +13,7 @@ namespace System
         private readonly long[] _mem = new long[4096];
 
         [Benchmark(Baseline = true)]
-        public unsafe void InterlockedIncrement64bitAlignment()
+        public unsafe void InterlockedIncrement64BitAlignment()
         {
             var arrayPtr = (ulong)Unsafe.AsPointer(ref _mem[0]);
             arrayPtr = ((arrayPtr + 1024UL) & ~1023UL) - 8; // Align to 8 byte in memory.
@@ -37,7 +36,7 @@ namespace System
         }
 
         [Benchmark]
-        public unsafe void InterlockedIncrement128bitAlignment()
+        public unsafe void InterlockedIncrement128BitAlignment()
         {
             var arrayPtr = (ulong)Unsafe.AsPointer(ref _mem[0]);
             arrayPtr = ((arrayPtr + 1024UL) & ~1023UL) - 16; // Align to 8 byte in memory.
@@ -60,7 +59,7 @@ namespace System
         }
 
         [Benchmark]
-        public unsafe void InterlockedIncrement32bitAlignment()
+        public unsafe void InterlockedIncrement32BitAlignment()
         {
             var arrayPtr = (ulong)Unsafe.AsPointer(ref _mem[0]);
             arrayPtr = ((arrayPtr + 1024UL) & ~1023UL) - 4; // Align to 4 byte in memory.
@@ -83,7 +82,7 @@ namespace System
         }
 
         [Benchmark]
-        public unsafe void InterlockedIncrement16bitAlignment()
+        public unsafe void InterlockedIncrement16BitAlignment()
         {
             var arrayPtr = (ulong)Unsafe.AsPointer(ref _mem[0]);
             arrayPtr = ((arrayPtr + 1024UL) & ~1023UL) - 2; // Align to 4 byte in memory.
@@ -106,7 +105,7 @@ namespace System
         }
 
         [Benchmark]
-        public unsafe void InterlockedIncrement8bitAlignment()
+        public unsafe void InterlockedIncrement8BitAlignment()
         {
             var arrayPtr = (ulong)Unsafe.AsPointer(ref _mem[0]);
             arrayPtr = ((arrayPtr + 1024UL) & ~1023UL) - 1; // Align to 4 byte in memory.

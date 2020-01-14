@@ -3,11 +3,13 @@
 
 namespace System
 {
+    using System.Diagnostics.CodeAnalysis;
     using System.Runtime.InteropServices;
     using FluentAssertions;
     using Xunit;
 
     [StructLayout(LayoutKind.Sequential, Pack = 1)]
+    [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed.")]
     public class GCExTests
     {
         private uint _i0;

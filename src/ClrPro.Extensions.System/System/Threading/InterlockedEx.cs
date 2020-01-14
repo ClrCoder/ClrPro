@@ -28,7 +28,7 @@ namespace System.Threading
         /// <returns><see langword="true" />, if the exchange was performed, <see langword="false" /> otherwise.</returns>
         /// <exception cref="NullReferenceException">The address of <paramref name="location1" /> is a null pointer.</exception>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static unsafe bool CompareExchange(ref double location1, double value, ref double comparand)
+        public static bool CompareExchange(ref double location1, double value, ref double comparand)
         {
             var comparandLocal = comparand;
             comparand = Interlocked.CompareExchange(ref location1, value, comparandLocal);
@@ -101,7 +101,7 @@ namespace System.Threading
         /// <returns><see langword="true" />, if the exchange was performed, <see langword="false" /> otherwise.</returns>
         /// <exception cref="NullReferenceException">The address of <paramref name="location1" /> is a null pointer.</exception>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool CompareExchange(ref long location1, long @value, ref long comparand)
+        public static bool CompareExchange(ref long location1, long value, ref long comparand)
         {
             var comparandLocal = comparand;
             comparand = Interlocked.CompareExchange(ref location1, value, comparandLocal);
@@ -181,7 +181,7 @@ namespace System.Threading
         /// <returns><see langword="true" />, if the exchange was performed, <see langword="false" /> otherwise.</returns>
         /// <exception cref="NullReferenceException">The address of <paramref name="location1" /> is a null pointer.</exception>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool CompareExchange<T>(ref T location1, T @value, ref T comparand)
+        public static bool CompareExchange<T>(ref T location1, T value, ref T comparand)
             where T : class
         {
             var comparandLocal = comparand;
