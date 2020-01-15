@@ -4,6 +4,7 @@
 namespace System
 {
     using System.Runtime.Serialization;
+    using JetBrains.Annotations;
 
     /// <summary>
     ///     The error while trying to perform an operation on non-alive <see cref="ICloseable" /> or
@@ -16,6 +17,7 @@ namespace System
     ///         <see cref="ClosingStatus.CloseRequested" />.
     ///     </param>
     /// </remarks>
+    [PublicAPI]
     [Serializable]
     public class ObjectClosedException : ObjectDisposedException
     {

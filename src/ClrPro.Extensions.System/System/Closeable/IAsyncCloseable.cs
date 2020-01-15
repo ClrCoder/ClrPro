@@ -30,7 +30,7 @@ namespace System
         ///     <see langword="true" /> if close has been requested this call or <see langword="false" /> if object close was was
         ///     already requested.
         /// </returns>
-        bool TryCloseAsync(out ValueTask closeTask);
+        protected bool TryCloseAsync(out ValueTask closeTask);
 
         /// <summary>
         ///     Closes the object asynchronously, or raises <see cref="ObjectClosedException" /> if close was already requested.
