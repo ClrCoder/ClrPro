@@ -153,6 +153,7 @@
         &lt;Kind Is="Method" /&gt;&#xD;
       &lt;/Entry.Match&gt;&#xD;
         &lt;Entry.SortBy&gt;&#xD;
+          &lt;ImplementsInterface Immediate="True" Direction="Descending" /&gt;&#xD;
           &lt;Access /&gt;&#xD;
           &lt;Static Direction="Descending" /&gt;	&#xD;
         &lt;/Entry.SortBy&gt;&#xD;
