@@ -10,13 +10,8 @@ namespace System
     ///     Notifies about object closing.
     /// </summary>
     [PublicAPI]
-    public interface IAsyncNotifyClosing
+    public interface IAsyncNotifyClosing : IClosingStatusObservable
     {
-        /// <summary>
-        ///     Lifetime status of the object.
-        /// </summary>
-        ClosingStatus ClosingStatus { get; }
-
         /// <summary>
         ///     Gets the <see cref="ValueTask" /> that becomes completed when the object switches to "close requested", "closing"
         ///     or "closed" state.

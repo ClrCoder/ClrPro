@@ -17,21 +17,8 @@ namespace System
         "Design",
         "CA1033:Interface methods should be callable by child types",
         Justification = "C# 8.0 DIM is not supported yet by FxCop")]
-    public interface IAsyncCloseable : IAsyncDisposable, IAsyncCodeScopeExtension
+    public interface IAsyncCloseable : IClosingStatusObservable, IAsyncDisposable, IAsyncCodeScopeExtension
     {
-        /// <summary>
-        ///     Tries to close the object asynchronously, if close wasn't yet requested.
-        /// </summary>
-        /// <param name="closeTask">
-        ///     Receives the awaitable result of the close asynchronous operation. The task will completes when
-        ///     object switches to the "closed" state.
-        /// </param>
-        /// <returns>
-        ///     <see langword="true" /> if close has been requested this call or <see langword="false" /> if object close was was
-        ///     already requested.
-        /// </returns>
-        protected bool TryCloseAsync(out ValueTask closeTask);
-
         /// <summary>
         ///     Closes the object asynchronously, or raises <see cref="ObjectClosedException" /> if close was already requested.
         /// </summary>
@@ -45,6 +32,19 @@ namespace System
                 ? closeTask
                 : new ValueTask(Task.FromException(new ObjectClosedException(this)));
         }
+
+        /// <summary>
+        ///     Tries to close the object asynchronously, if close wasn't yet requested.
+        /// </summary>
+        /// <param name="closeTask">
+        ///     Receives the awaitable result of the close asynchronous operation. The task will completes when
+        ///     object switches to the "closed" state.
+        /// </param>
+        /// <returns>
+        ///     <see langword="true" /> if close has been requested this call or <see langword="false" /> if object close was was
+        ///     already requested.
+        /// </returns>
+        protected bool TryCloseAsync(out ValueTask closeTask);
 
         // ReSharper disable once CommentTypo
         // ReSharper disable once InheritdocInvalidUsage

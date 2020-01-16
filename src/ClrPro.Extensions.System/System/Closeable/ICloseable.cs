@@ -24,7 +24,7 @@ namespace System
         "Design",
         "CA1033:Interface methods should be callable by child types",
         Justification = "C# 8.0 DIM is not supported yet by FxCop")]
-    public interface ICloseable : IDisposable, ICodeScopeExtension
+    public interface ICloseable : IClosingStatusObservable, IDisposable, ICodeScopeExtension
     {
         /// <summary>
         ///     Tries to close the object synchronously, if close wasn't yet requested.
