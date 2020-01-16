@@ -114,10 +114,6 @@ namespace System
                     Environment.FailFast("Runtime termination error.", ex);
                 }
             }
-            else
-            {
-                ProcessMutedException(unhandledException);
-            }
         }
 
         /// <summary>
@@ -138,13 +134,20 @@ namespace System
         /// <returns><see langword="true" /> if the passed exception was handled, <see langword="false" /> otherwise.</returns>
         protected virtual bool TryRecoverOnUnhandledException(Exception exception)
         {
+            var canRecover = false;
             switch (exception)
             {
                 case OperationCanceledException _:
-                    return true;
+                    canRecover = true;
+                    break;
             }
 
-            return false;
+            if (canRecover)
+            {
+                Trace.TraceError($"Recovered from exception: {exception}");
+            }
+
+            return canRecover;
         }
     }
 }
