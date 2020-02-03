@@ -11,8 +11,8 @@ namespace System
     /// </summary>
     /// <remarks>
     ///     <para>
-    ///         This exception could be raised in a finalizer and then passed to
-    ///         <see cref="IRuntimeEnvironment.ProcessUnhandledException" />.
+    ///         This exception could be raised in a finalizer and then passed to some application-level error handler (for
+    ///         example IRuntimeEnvironment.ProcessUnhandledException).
     ///     </para>
     /// </remarks>
     [Serializable]

@@ -17,7 +17,7 @@ namespace System
         /// </summary>
         /// <param name="closeable">The object whose state to check.</param>
         /// <exception cref="ExplicitCloseMissingException">The object wasn't explicitly closed.</exception>
-        public static void VerifyCloseRequested(this INotifyClosing closeable)
+        public static void VerifyCloseRequested(this IClosingStatusObservable closeable)
         {
             if (closeable == null)
             {
@@ -27,24 +27,6 @@ namespace System
             if (closeable.ClosingStatus == ClosingStatus.Alive)
             {
                 throw new ExplicitCloseMissingException(closeable);
-            }
-        }
-
-        /// <summary>
-        ///     Verifies that the object is not in "alive" state, throws <see cref="ExplicitCloseMissingException" /> otherwise.
-        /// </summary>
-        /// <param name="asyncCloseable">The object whose state to check.</param>
-        /// <exception cref="ExplicitCloseMissingException">The object wasn't explicitly closed.</exception>
-        public static void VerifyCloseRequested(this IAsyncNotifyClosing asyncCloseable)
-        {
-            if (asyncCloseable == null)
-            {
-                throw new ArgumentNullException(nameof(asyncCloseable));
-            }
-
-            if (asyncCloseable.ClosingStatus == ClosingStatus.Alive)
-            {
-                throw new ExplicitCloseMissingException(asyncCloseable);
             }
         }
     }

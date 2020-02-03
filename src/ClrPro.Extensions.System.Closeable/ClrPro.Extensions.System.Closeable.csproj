@@ -5,18 +5,13 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <RootNamespace />
     <VersionPrefix>$(ProductReleaseVersion)</VersionPrefix>
-    <Title>Base class library essential extensions and polyfills.</Title>
+    <Title>Clear semantic lifetime management abstractions as an extension to the IDisposage and IAsyncDisposable interfaces.</Title>
     <Authors>Dmitrii Ivanov</Authors>
-    <PackageTags>Runtime, Exception.</PackageTags>
+    <PackageTags>Closeable, Disposable, Lifetime</PackageTags>
     <Description>
-      IRuntimeEnvironment provides various runtime policies injection (exception handling, etc).
+      ICloseable, IAsynCloseable, ITerminable, IAsyncTerminable classes.
     </Description>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="4.5.2" />
-  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\ClrPro.ESharp\ClrPro.ESharp.csproj" />

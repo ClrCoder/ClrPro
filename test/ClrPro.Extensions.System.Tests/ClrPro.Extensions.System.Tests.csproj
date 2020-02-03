@@ -7,6 +7,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\benchmarks\ClrPro.Extensions.System.Benchmarks\ClrPro.Extensions.System.Benchmarks.csproj" />
+    <ProjectReference Include="..\..\src\ClrPro.Extensions.System.Closeable\ClrPro.Extensions.System.Closeable.csproj" />
     <ProjectReference Include="..\..\src\ClrPro.Extensions.System\ClrPro.Extensions.System.csproj" />
   </ItemGroup>
 

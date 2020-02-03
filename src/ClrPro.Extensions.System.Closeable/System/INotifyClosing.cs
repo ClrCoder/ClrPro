@@ -10,24 +10,24 @@ namespace System
     /// </summary>
     /// <remarks>
     ///     Implementation should always go through all states of an object
-    ///     <see cref="System.ClosingStatus.CloseRequested" />,
-    ///     <see cref="System.ClosingStatus.Closing" />, <see cref="System.ClosingStatus.Closed" />.
+    ///     <see cref="ClosingStatus.CloseRequested" />,
+    ///     <see cref="ClosingStatus.Closing" />, <see cref="ClosingStatus.Closed" />.
     /// </remarks>
     [PublicAPI]
     public interface INotifyClosing : IClosingStatusObservable
     {
         /// <summary>
-        ///     Raised when the object switched to <see cref="System.ClosingStatus.CloseRequested" /> state.
+        ///     Raised when the object switched to <see cref="ClosingStatus.CloseRequested" /> state.
         /// </summary>
         event EventHandler CloseRequested;
 
         /// <summary>
-        ///     Raised when the object switched to <see cref="System.ClosingStatus.Closing" /> state.
+        ///     Raised when the object switched to <see cref="ClosingStatus.Closing" /> state.
         /// </summary>
         event EventHandler Closing;
 
         /// <summary>
-        ///     Raised when the object switched to <see cref="System.ClosingStatus.Closed" /> state.
+        ///     Raised when the object switched to <see cref="ClosingStatus.Closed" /> state.
         /// </summary>
         event EventHandler Closed;
     }

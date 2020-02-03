@@ -15,8 +15,8 @@ namespace System
     ///     <para>
     ///         You should clearly define the auto-close by GC policy in the implementation of this contract. In a case when
     ///         explicit <see cref="Close" /> call is required, the implementation should raise in the finalizer
-    ///         <see cref="ExplicitCloseMissingException" /> and pass it to the
-    ///         <see cref="IRuntimeEnvironment.ProcessUnhandledException" />.
+    ///         <see cref="ExplicitCloseMissingException" /> and pass it to the application level exception handler (for
+    ///         example IRuntimeEnvironment.ProcessUnhandledException).
     ///     </para>
     /// </remarks>
     [PublicAPI]
