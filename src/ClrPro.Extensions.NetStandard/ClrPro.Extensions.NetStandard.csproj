@@ -5,6 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ClrPro.Extensions.ObjectModel\ClrPro.Extensions.ObjectModel.csproj" />
+    <ProjectReference Include="..\ClrPro.Extensions.System.Closeable\ClrPro.Extensions.System.Closeable.csproj" />
+    <ProjectReference Include="..\ClrPro.Extensions.System\ClrPro.Extensions.System.csproj" />
     <ProjectReference Include="..\ClrPro.Extensions.Threading\ClrPro.Extensions.Threading.csproj" />
   </ItemGroup>
 

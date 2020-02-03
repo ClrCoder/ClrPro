@@ -41,7 +41,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "benchmarks", "benchmarks", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClrPro.Extensions.System.Benchmarks", "benchmarks\ClrPro.Extensions.System.Benchmarks\ClrPro.Extensions.System.Benchmarks.csproj", "{96154659-B863-4F46-8542-2C2EB727DB92}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClrPro.Extensions.System.Closeable", "src\ClrPro.Extensions.System.Closeable\ClrPro.Extensions.System.Closeable.csproj", "{54557FF0-4E26-46FF-BC48-549A548AC84D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClrPro.Extensions.System.Closeable", "src\ClrPro.Extensions.System.Closeable\ClrPro.Extensions.System.Closeable.csproj", "{54557FF0-4E26-46FF-BC48-549A548AC84D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClrPro.Extensions.BusinessDomain.Abstractions", "src\ClrPro.Extensions.BusinessDomain.Abstractions\ClrPro.Extensions.BusinessDomain.Abstractions.csproj", "{DCD89583-DDFA-40C4-AA1F-E575BCF1EE56}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClrPro.Extensions.ObjectModel", "src\ClrPro.Extensions.ObjectModel\ClrPro.Extensions.ObjectModel.csproj", "{34FB1115-9405-4877-A7E7-4E68C9F1ADC8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -89,6 +93,14 @@ Global
 		{54557FF0-4E26-46FF-BC48-549A548AC84D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{54557FF0-4E26-46FF-BC48-549A548AC84D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{54557FF0-4E26-46FF-BC48-549A548AC84D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DCD89583-DDFA-40C4-AA1F-E575BCF1EE56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCD89583-DDFA-40C4-AA1F-E575BCF1EE56}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCD89583-DDFA-40C4-AA1F-E575BCF1EE56}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCD89583-DDFA-40C4-AA1F-E575BCF1EE56}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34FB1115-9405-4877-A7E7-4E68C9F1ADC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34FB1115-9405-4877-A7E7-4E68C9F1ADC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34FB1115-9405-4877-A7E7-4E68C9F1ADC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34FB1115-9405-4877-A7E7-4E68C9F1ADC8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
