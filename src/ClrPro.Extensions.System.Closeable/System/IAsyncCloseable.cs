@@ -44,7 +44,7 @@ namespace System
         ///     <see langword="true" /> if close has been requested this call or <see langword="false" /> if object close was was
         ///     already requested.
         /// </returns>
-        protected bool TryCloseAsync(out ValueTask closeTask);
+        bool TryCloseAsync(out ValueTask closeTask);
 
         // ReSharper disable once CommentTypo
         // ReSharper disable once InheritdocInvalidUsage

@@ -49,6 +49,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClrPro.Extensions.ObjectMod
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClrPro.Extensions.Threading.Atomics", "src\ClrPro.Extensions.Threading.Atomics\ClrPro.Extensions.Threading.Atomics.csproj", "{151AEAFB-026B-4B0E-8F94-72D798CAF207}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClrPro.Extensions.Threading.Tasks", "src\ClrPro.Extensions.Threading.Tasks\ClrPro.Extensions.Threading.Tasks.csproj", "{F7CC4A7A-FB12-4207-88B6-74D8F2DC1A48}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -107,6 +109,10 @@ Global
 		{151AEAFB-026B-4B0E-8F94-72D798CAF207}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{151AEAFB-026B-4B0E-8F94-72D798CAF207}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{151AEAFB-026B-4B0E-8F94-72D798CAF207}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7CC4A7A-FB12-4207-88B6-74D8F2DC1A48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7CC4A7A-FB12-4207-88B6-74D8F2DC1A48}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7CC4A7A-FB12-4207-88B6-74D8F2DC1A48}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7CC4A7A-FB12-4207-88B6-74D8F2DC1A48}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

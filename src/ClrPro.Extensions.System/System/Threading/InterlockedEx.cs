@@ -164,6 +164,9 @@ namespace System.Threading
         ///     Compares two instances of the specified reference type <typeparamref name="T" /> for reference equality and, if
         ///     they are equal, replaces the first one.
         /// </summary>
+        /// <remarks>
+        ///     TODO: Add C# 8.0 Nullability rules of result and in/out arguments.
+        /// </remarks>
         /// <typeparam name="T">
         ///     The type to be used for <paramref name="location1" />, <paramref name="value" />, and
         ///     <paramref name="comparand" />. This type must be a reference type.
@@ -182,7 +185,7 @@ namespace System.Threading
         /// <exception cref="NullReferenceException">The address of <paramref name="location1" /> is a null pointer.</exception>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool CompareExchange<T>(ref T location1, T value, ref T comparand)
-            where T : class
+            where T : class?
         {
             var comparandLocal = comparand;
             comparand = Interlocked.CompareExchange(ref location1, value, comparandLocal);
