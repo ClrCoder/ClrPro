@@ -1,5 +1,5 @@
 <Project>
-    <PropertyGroup>
-        <PathMap>$(TargetDir)=C:\bin\,$(ProjectDir)=C:\src\,$(SolutionDir)=C:\ClrPro\</PathMap>
-    </PropertyGroup>
+  <PropertyGroup>
+    <PathMap>$(TargetDir)=C:\bin\,$(ProjectDir)=C:\src\,$(SolutionDir)=C:\ClrPro\</PathMap>
+  </PropertyGroup>
 </Project>

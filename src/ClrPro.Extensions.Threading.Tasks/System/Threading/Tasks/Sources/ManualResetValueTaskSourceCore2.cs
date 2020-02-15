@@ -313,9 +313,9 @@ namespace System.Threading.Tasks.Sources
             _completed = true;
 
             if (_continuation != null || Interlocked.CompareExchange(
-                    ref _continuation,
-                    ManualResetValueTaskSourceCoreShared2.s_sentinel,
-                    null) != null)
+                ref _continuation,
+                ManualResetValueTaskSourceCoreShared2.s_sentinel,
+                null) != null)
             {
                 if (_executionContext != null)
                 {
