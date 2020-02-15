@@ -51,7 +51,7 @@ namespace System.Threading
             // Waiting all tasks to complete.
             foreach (var t in tasksToWait)
             {
-                await t;
+                await t.ConfigureAwait(false);
             }
         }
 

@@ -39,7 +39,7 @@ namespace System.Threading
         /// <summary>
         ///     Initializes a new instance of the <see cref="AsyncCloseableBase{TState, TAtomic}" /> class.
         /// </summary>
-        /// <param name="atomicState">The state for the atomic </param>
+        /// <param name="atomicState">The initial state of the atomic storage.</param>
         protected AsyncCloseableBase(TAtomic atomicState)
         {
             this.atomicState = atomicState;

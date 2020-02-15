@@ -15,6 +15,6 @@ namespace System.Threading.Tasks
         ///     Sets the result of the operation.
         /// </summary>
         /// <param name="completionResult">The result of the asynchronous operation.</param>
-        void SetCompletion(TaskCompletionResult completionResult);
+        void SetCompletionResult(TaskCompletionResult completionResult);
     }
 }

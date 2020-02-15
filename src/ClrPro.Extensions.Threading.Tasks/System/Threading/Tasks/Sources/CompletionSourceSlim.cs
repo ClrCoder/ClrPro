@@ -20,7 +20,7 @@ namespace System.Threading.Tasks.Sources
         private ManualResetValueTaskSourceCore2<byte> _core = default;
 
         /// <summary>
-        ///     The task that will completes when the <see cref="SetCompletion" /> called.
+        ///     The task that will completes when the <see cref="SetCompletionResult" /> called.
         /// </summary>
         public ValueTask Task => new ValueTask(this, _core.Version);
 
@@ -47,7 +47,7 @@ namespace System.Threading.Tasks.Sources
         }
 
         /// <inheritdoc />
-        public void SetCompletion(TaskCompletionResult result)
+        public void SetCompletionResult(TaskCompletionResult result)
         {
             if (result.IsSuccessful)
             {

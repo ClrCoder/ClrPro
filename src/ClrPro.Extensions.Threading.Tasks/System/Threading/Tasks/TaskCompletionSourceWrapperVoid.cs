@@ -49,7 +49,7 @@ namespace System.Threading.Tasks
 
         /// <inheritdoc />
         [SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Reviewed")]
-        public void SetCompletion(TaskCompletionResult completionResult)
+        public void SetCompletionResult(TaskCompletionResult completionResult)
         {
             try
             {

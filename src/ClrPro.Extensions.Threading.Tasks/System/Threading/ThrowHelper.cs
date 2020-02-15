@@ -3,6 +3,9 @@
 
 namespace System.Threading
 {
+    using System.Diagnostics.CodeAnalysis;
+    using System.Runtime.CompilerServices;
+
     // This pattern of easily inlinable "void Throw" routines that stack on top of NoInlining factory methods
     // is a compromise between older JITs and newer JITs (RyuJIT in Core CLR 1.1.0+ and desktop CLR in 4.6.3+).
     // This package is explicitly targeted at older JITs as newer runtimes expect to implement Span intrinsically for
@@ -17,7 +20,16 @@ namespace System.Threading
     //     factory methods - still maintaining advantages 1 & 2
     internal static class ThrowHelper
     {
-        internal static void ThrowInvalidOperationException()
+        [DoesNotReturn]
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        public static void ThrowArgumentNullException(ExceptionArgument argument)
+        {
+            throw new ArgumentNullException(argument.ToString());
+        }
+
+        [DoesNotReturn]
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        public static void ThrowInvalidOperationException()
         {
             throw new InvalidOperationException();
         }
