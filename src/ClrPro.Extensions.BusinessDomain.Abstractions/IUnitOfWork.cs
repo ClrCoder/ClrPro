@@ -14,23 +14,28 @@ namespace ClrPro.Extensions.BusinessDomain
     public interface IUnitOfWork : IAsyncTerminable
     {
         /// <summary>
+        ///     The scheduled action on close of the UoW.
+        /// </summary>
+        UowCloseAction CloseAction { get; }
+
+        /// <summary>
+        ///     Sets up commit action on close of the UoW.
+        /// </summary>
+        void CommitOnClose();
+
+        /// <summary>
+        ///     Sets up rollback action on close of the UoW.
+        /// </summary>
+        void RollbackOnClose();
+
+        /// <summary>
         ///     Explicitly commits the current unit of work changes.
         /// </summary>
         /// <remarks>
         ///     Explicit call to the <see cref="Commit" /> load back from the persistence the new values of entities which was
         ///     updated during the commit phase.
         /// </remarks>
-        /// <param name="update">
-        ///     <see langword="true" /> if the UoW loaded entities should be updated from the persistence after
-        ///     the commit, <see langword="false" /> otherwise.
-        /// </param>
         /// <returns>The async execution task.</returns>
-        ValueTask Commit(bool update = false);
-
-        /// <summary>
-        ///     Rollbacks the current unit of work changes.
-        /// </summary>
-        /// <returns>The async execution task.</returns>
-        ValueTask Rollback();
+        ValueTask Commit();
     }
 }

@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
     <RootNamespace>ClrPro.Extensions.BusinessDomain</RootNamespace>
+    <VersionPrefix>$(ProductReleaseVersion)</VersionPrefix>
   </PropertyGroup>
 
   <ItemGroup>
@@ -10,7 +11,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ClrPro.Extensions.NetStandard\ClrPro.Extensions.NetStandard.csproj" />
+    <ProjectReference Include="..\ClrPro.Extensions.ObjectModel\ClrPro.Extensions.ObjectModel.csproj" />
+    <ProjectReference Include="..\ClrPro.Extensions.System.Closeable\ClrPro.Extensions.System.Closeable.csproj" />
   </ItemGroup>
 
 </Project>
