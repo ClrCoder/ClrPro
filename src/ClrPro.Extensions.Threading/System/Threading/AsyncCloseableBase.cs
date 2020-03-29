@@ -3,6 +3,7 @@
 
 namespace System.Threading
 {
+    using System.Diagnostics;
     using System.Diagnostics.CodeAnalysis;
     using System.Runtime.CompilerServices;
     using System.Security;
@@ -67,11 +68,15 @@ namespace System.Threading
         ///     Notifies that all pending operations were completed.
         /// </summary>
         /// <remarks>
-        ///     Should be called only once when the object switched from <see cref="System.ClosingStatus.CloseRequested" /> to
+        ///     Should be called only once after the object switched from <see cref="System.ClosingStatus.CloseRequested" /> to
         ///     <see cref="System.ClosingStatus.Closing" />.
         /// </remarks>
         protected void NotifyPendingOperationsCompleted()
         {
+            Debug.Assert(
+                atomicState.Read().Status == ClosingStatus.Closing,
+                "Notification should be called in appropriate state.");
+
             var task = CloseAsync(null);
 
             // Subscribing continuation of the task.
