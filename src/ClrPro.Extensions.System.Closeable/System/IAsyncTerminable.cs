@@ -23,6 +23,24 @@ namespace System
         /// </summary>
         Exception? TerminateReason { get; }
 
+        // ReSharper disable once CommentTypo
+        // ReSharper disable once InheritdocInvalidUsage
+
+        /// <inheritdoc />
+        bool IAsyncCloseable.TryCloseAsync(out ValueTask closeTask)
+        {
+            return TryCloseAsync(null, out closeTask);
+        }
+
+        // ReSharper disable once CommentTypo
+        // ReSharper disable once InheritdocInvalidUsage
+
+        /// <inheritdoc />
+        ValueTask IAsyncCodeScopeExtension.OnLoseCodeScopeAsync(Exception? exception)
+        {
+            return exception != null ? TerminateAsync(exception) : CloseAsync();
+        }
+
         /// <summary>
         ///     Terminates the object with the specified, if it hasn't been closed or terminated yet.
         /// </summary>
@@ -63,23 +81,5 @@ namespace System
         ///     already closed/terminated.
         /// </returns>
         protected bool TryCloseAsync(Exception? reasonException, out ValueTask closeTask);
-
-        // ReSharper disable once CommentTypo
-        // ReSharper disable once InheritdocInvalidUsage
-
-        /// <inheritdoc />
-        bool IAsyncCloseable.TryCloseAsync(out ValueTask closeTask)
-        {
-            return TryCloseAsync(null, out closeTask);
-        }
-
-        // ReSharper disable once CommentTypo
-        // ReSharper disable once InheritdocInvalidUsage
-
-        /// <inheritdoc />
-        ValueTask IAsyncCodeScopeExtension.OnLoseCodeScopeAsync(Exception? exception)
-        {
-            return exception != null ? TerminateAsync(exception) : CloseAsync();
-        }
     }
 }

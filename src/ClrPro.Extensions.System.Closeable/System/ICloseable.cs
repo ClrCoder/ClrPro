@@ -26,6 +26,28 @@ namespace System
         Justification = "C# 8.0 DIM is not supported yet by FxCop")]
     public interface ICloseable : IClosingStatusObservable, IDisposable, ICodeScopeExtension
     {
+        // ReSharper disable once CommentTypo
+        // ReSharper disable once InheritdocInvalidUsage
+
+        /// <inheritdoc />
+        [SuppressMessage(
+            "Usage",
+            "CA1816:Dispose methods should call SuppressFinalize",
+            Justification = "C# 8.0 DIM is not supported yet by FxCop")]
+        void IDisposable.Dispose()
+        {
+            TryClose();
+        }
+
+        // ReSharper disable once CommentTypo
+        // ReSharper disable once InheritdocInvalidUsage
+
+        /// <inheritdoc />
+        void ICodeScopeExtension.OnLoseCodeScope(Exception? exception)
+        {
+            Close();
+        }
+
         /// <summary>
         ///     Tries to close the object synchronously, if close wasn't yet requested.
         /// </summary>
@@ -52,28 +74,6 @@ namespace System
             {
                 throw new ObjectClosedException(this);
             }
-        }
-
-        // ReSharper disable once CommentTypo
-        // ReSharper disable once InheritdocInvalidUsage
-
-        /// <inheritdoc />
-        [SuppressMessage(
-            "Usage",
-            "CA1816:Dispose methods should call SuppressFinalize",
-            Justification = "C# 8.0 DIM is not supported yet by FxCop")]
-        void IDisposable.Dispose()
-        {
-            TryClose();
-        }
-
-        // ReSharper disable once CommentTypo
-        // ReSharper disable once InheritdocInvalidUsage
-
-        /// <inheritdoc />
-        void ICodeScopeExtension.OnLoseCodeScope(Exception? exception)
-        {
-            Close();
         }
     }
 }

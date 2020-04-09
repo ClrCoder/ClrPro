@@ -18,12 +18,6 @@ namespace System
     [PublicAPI]
     public interface IUnsafeCloseable : ICodeScopeExtension
     {
-        /// <summary>
-        ///     Closes resource. The resource cannot control it's state due to any reason. The user of the
-        ///     <see cref="IUnsafeCloseable" /> is responsible to control that one and only one call will be performed.
-        /// </summary>
-        void UnsafeClose();
-
         // ReSharper disable once CommentTypo
         // ReSharper disable once InheritdocInvalidUsage
 
@@ -32,5 +26,11 @@ namespace System
         {
             UnsafeClose();
         }
+
+        /// <summary>
+        ///     Closes resource. The resource cannot control it's state due to any reason. The user of the
+        ///     <see cref="IUnsafeCloseable" /> is responsible to control that one and only one call will be performed.
+        /// </summary>
+        void UnsafeClose();
     }
 }

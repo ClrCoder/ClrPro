@@ -22,6 +22,31 @@ namespace System
         /// </summary>
         Exception? TerminateReason { get; }
 
+        // ReSharper disable once CommentTypo
+        // ReSharper disable once InheritdocInvalidUsage
+
+        /// <inheritdoc />
+        bool ICloseable.TryClose()
+        {
+            return TryClose(null);
+        }
+
+        // ReSharper disable once CommentTypo
+        // ReSharper disable once InheritdocInvalidUsage
+
+        /// <inheritdoc />
+        void ICodeScopeExtension.OnLoseCodeScope(Exception? exception)
+        {
+            if (exception != null)
+            {
+                Terminate(exception);
+            }
+            else
+            {
+                Close();
+            }
+        }
+
         /// <summary>
         ///     Terminates the object with the specified, if it hasn't been closed or terminated yet.
         /// </summary>
@@ -61,30 +86,5 @@ namespace System
         ///     already closed/terminated.
         /// </returns>
         protected bool TryClose(Exception? reasonException);
-
-        // ReSharper disable once CommentTypo
-        // ReSharper disable once InheritdocInvalidUsage
-
-        /// <inheritdoc />
-        bool ICloseable.TryClose()
-        {
-            return TryClose(null);
-        }
-
-        // ReSharper disable once CommentTypo
-        // ReSharper disable once InheritdocInvalidUsage
-
-        /// <inheritdoc />
-        void ICodeScopeExtension.OnLoseCodeScope(Exception? exception)
-        {
-            if (exception != null)
-            {
-                Terminate(exception);
-            }
-            else
-            {
-                Close();
-            }
-        }
     }
 }

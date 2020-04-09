@@ -19,6 +19,25 @@ namespace System
         Justification = "C# 8.0 DIM is not supported yet by FxCop")]
     public interface IAsyncCloseable : IClosingStatusObservable, IAsyncDisposable, IAsyncCodeScopeExtension
     {
+        // ReSharper disable once CommentTypo
+        // ReSharper disable once InheritdocInvalidUsage
+
+        /// <inheritdoc />
+        ValueTask IAsyncDisposable.DisposeAsync()
+        {
+            TryCloseAsync(out var closeTask);
+            return closeTask;
+        }
+
+        // ReSharper disable once CommentTypo
+        // ReSharper disable once InheritdocInvalidUsage
+
+        /// <inheritdoc />
+        ValueTask IAsyncCodeScopeExtension.OnLoseCodeScopeAsync(Exception? exception)
+        {
+            return CloseAsync();
+        }
+
         /// <summary>
         ///     Closes the object asynchronously, or raises <see cref="ObjectClosedException" /> if close was already requested.
         /// </summary>
@@ -45,24 +64,5 @@ namespace System
         ///     already requested.
         /// </returns>
         bool TryCloseAsync(out ValueTask closeTask);
-
-        // ReSharper disable once CommentTypo
-        // ReSharper disable once InheritdocInvalidUsage
-
-        /// <inheritdoc />
-        ValueTask IAsyncDisposable.DisposeAsync()
-        {
-            TryCloseAsync(out var closeTask);
-            return closeTask;
-        }
-
-        // ReSharper disable once CommentTypo
-        // ReSharper disable once InheritdocInvalidUsage
-
-        /// <inheritdoc />
-        ValueTask IAsyncCodeScopeExtension.OnLoseCodeScopeAsync(Exception? exception)
-        {
-            return CloseAsync();
-        }
     }
 }

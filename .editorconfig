@@ -90,7 +90,6 @@ csharp_prefer_static_local_function=true:suggestion
 csharp_preferred_modifier_order=public, private, protected, internal, new, abstract, virtual, sealed, override, static, readonly, extern, unsafe, volatile, async:suggestion
 
 # Code-block preferences
-csharp_prefer_braces=true:silent
 csharp_prefer_simple_using_statement=true:suggestion
 
 # Expression-level preferences
@@ -242,10 +241,10 @@ dotnet_naming_symbols.types_and_namespaces_symbols.applicable_kinds=namespace,cl
 
 # ReSharper properties
 resharper_apply_auto_detected_rules=false
-resharper_braces_for_for=not_required
-resharper_braces_for_foreach=not_required
-resharper_braces_for_ifelse=not_required_for_both
-resharper_braces_for_while=not_required
+resharper_braces_for_for=required
+resharper_braces_for_foreach=required
+resharper_braces_for_ifelse=required
+resharper_braces_for_while=required
 resharper_braces_redundant=true
 resharper_csharp_insert_final_newline=true
 resharper_csharp_naming_rule.constants=AaBb
@@ -264,7 +263,7 @@ resharper_csharp_wrap_parameters_style=chop_if_long
 resharper_keep_existing_declaration_block_arrangement=false
 resharper_keep_existing_embedded_block_arrangement=false
 resharper_keep_existing_enum_arrangement=false
-resharper_parentheses_non_obvious_operations=none, multiplicative, additive, arithmetic, shift, bitwise_and, bitwise_exclusive_or, bitwise_inclusive_or, bitwise, conditional_and, conditional_or, conditional
+resharper_parentheses_non_obvious_operations=none, multiplicative, additive, arithmetic, shift, bitwise_and, bitwise_exclusive_or, bitwise_inclusive_or, bitwise
 resharper_place_constructor_initializer_on_same_line=false
 resharper_place_field_attribute_on_same_line=false
 resharper_place_type_constraints_on_same_line=false
