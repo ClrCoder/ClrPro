@@ -39,7 +39,7 @@ namespace System.Threading
             _outputHelper.WriteLine(reThrownException.ToString());
         }
 
-        private Exception GenerateException()
+        private static Exception GenerateException()
         {
             Exception? exception = null;
             var t = new Thread(
@@ -60,7 +60,7 @@ namespace System.Threading
             return exception;
         }
 
-        private Exception GetRethrownException(TaskCompletionSource<bool> completionSource)
+        private static Exception GetRethrownException(TaskCompletionSource<bool> completionSource)
         {
             Exception? exception = null;
             var t = new Thread(

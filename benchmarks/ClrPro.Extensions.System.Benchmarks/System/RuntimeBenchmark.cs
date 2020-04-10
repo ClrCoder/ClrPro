@@ -18,6 +18,7 @@ namespace System
     public class RuntimeBenchmark
     {
         private const int IterationsCount = 1000_000;
+        private readonly object _guard = new object();
         private int _intState;
         private long _longState;
         private object _objState = "abc";
@@ -215,43 +216,43 @@ namespace System
         {
             for (var i = 0; i < IterationsCount / 10; i++)
             {
-                lock (this)
+                lock (_guard)
                 {
                 }
 
-                lock (this)
+                lock (_guard)
                 {
                 }
 
-                lock (this)
+                lock (_guard)
                 {
                 }
 
-                lock (this)
+                lock (_guard)
                 {
                 }
 
-                lock (this)
+                lock (_guard)
                 {
                 }
 
-                lock (this)
+                lock (_guard)
                 {
                 }
 
-                lock (this)
+                lock (_guard)
                 {
                 }
 
-                lock (this)
+                lock (_guard)
                 {
                 }
 
-                lock (this)
+                lock (_guard)
                 {
                 }
 
-                lock (this)
+                lock (_guard)
                 {
                 }
             }

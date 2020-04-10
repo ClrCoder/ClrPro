@@ -12,6 +12,9 @@ namespace ClrPro.ESharpLang
     /// <summary>
     ///     Using operator chain syntax context before ".Do" clause.
     /// </summary>
+    /// <remarks>
+    ///     The ESharp.Using methods family can't provide maximal performance. The aim is advanced syntax.
+    /// </remarks>
     /// <typeparam name="T">The type of the scope extension.</typeparam>
     [PublicAPI]
     [SuppressMessage(
@@ -46,7 +49,7 @@ namespace ClrPro.ESharpLang
                 catch (Exception ex)
                 {
                     // This method can throw exception and override current one.
-                    await ScopeExtension.OnLoseCodeScopeAsync(ex);
+                    await ScopeExtension.OnLoseCodeScopeAsync(ex).ConfigureAwait(false);
 
                     if (ScopeExtension.IsRethrowRequired)
                     {
@@ -56,7 +59,7 @@ namespace ClrPro.ESharpLang
 
                 if (codeExecuted)
                 {
-                    await ScopeExtension.OnLoseCodeScopeAsync(null);
+                    await ScopeExtension.OnLoseCodeScopeAsync(null).ConfigureAwait(false);
                 }
             }
         }
@@ -84,7 +87,7 @@ namespace ClrPro.ESharpLang
                 catch (Exception ex)
                 {
                     // This method can throw exception and override current one.
-                    await ScopeExtension.OnLoseCodeScopeAsync(ex);
+                    await ScopeExtension.OnLoseCodeScopeAsync(ex).ConfigureAwait(false);
 
                     if (ScopeExtension.IsRethrowRequired)
                     {
@@ -94,7 +97,7 @@ namespace ClrPro.ESharpLang
 
                 if (codeExecuted)
                 {
-                    await ScopeExtension.OnLoseCodeScopeAsync(null);
+                    await ScopeExtension.OnLoseCodeScopeAsync(null).ConfigureAwait(false);
                 }
             }
         }

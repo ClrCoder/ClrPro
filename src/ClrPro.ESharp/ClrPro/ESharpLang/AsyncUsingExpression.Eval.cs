@@ -47,7 +47,7 @@ namespace ClrPro.ESharpLang
             }
             finally
             {
-                await ScopeExtension.OnLoseCodeScopeAsync(exception);
+                await ScopeExtension.OnLoseCodeScopeAsync(exception).ConfigureAwait(false);
             }
         }
 
@@ -86,7 +86,7 @@ namespace ClrPro.ESharpLang
             }
             finally
             {
-                await ScopeExtension.OnLoseCodeScopeAsync(exception);
+                await ScopeExtension.OnLoseCodeScopeAsync(exception).ConfigureAwait(false);
             }
         }
     }

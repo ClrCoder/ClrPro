@@ -33,6 +33,7 @@ namespace ClrPro.ESharpLang.Tests
                                 await Task.Delay(10);
                                 throw new InvalidOperationException("Dummy exception.");
                             })
+                        .AsTask()
                         .GetAwaiter()
                         .GetResult();
                 }).Should().Throw<InvalidOperationException>();
@@ -58,12 +59,14 @@ namespace ClrPro.ESharpLang.Tests
                 {
                     dummy = new DummyAsyncCodeScopeExtension();
                     ESharp.UsingAsync(dummy).DoAsync(
-                        async d =>
-                        {
-                            await Task.Delay(10);
-                            d.Should().Be(dummy);
-                            throw new InvalidOperationException("Dummy exception.");
-                        }).GetAwaiter().GetResult();
+                            async d =>
+                            {
+                                await Task.Delay(10);
+                                d.Should().Be(dummy);
+                                throw new InvalidOperationException("Dummy exception.");
+                            })
+                        .AsTask()
+                        .GetAwaiter().GetResult();
                 }).Should().Throw<InvalidOperationException>();
             dummy.TerminateReasonException.Should().BeOfType<InvalidOperationException>();
 
@@ -93,6 +96,7 @@ namespace ClrPro.ESharpLang.Tests
                                 await Task.Delay(10);
                                 throw new InvalidOperationException("Dummy exception.");
                             })
+                        .AsTask()
                         .GetAwaiter()
                         .GetResult();
                 }).Should().Throw<InvalidOperationException>();
@@ -118,12 +122,15 @@ namespace ClrPro.ESharpLang.Tests
                 {
                     dummy = new DummyAsyncCodeScopeExtension();
                     ESharp.UsingAsync(dummy).DoTAsync(
-                        async d =>
-                        {
-                            await Task.Delay(10);
-                            d.Should().Be(dummy);
-                            throw new InvalidOperationException("Dummy exception.");
-                        }).GetAwaiter().GetResult();
+                            async d =>
+                            {
+                                await Task.Delay(10);
+                                d.Should().Be(dummy);
+                                throw new InvalidOperationException("Dummy exception.");
+                            })
+                        .AsTask()
+                        .GetAwaiter()
+                        .GetResult();
                 }).Should().Throw<InvalidOperationException>();
             dummy.TerminateReasonException.Should().BeOfType<InvalidOperationException>();
 

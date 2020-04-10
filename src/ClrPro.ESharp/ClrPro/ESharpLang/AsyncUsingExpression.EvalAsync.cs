@@ -17,10 +17,6 @@ namespace ClrPro.ESharpLang
         /// </summary>
         /// <typeparam name="TResult">The eval result type.</typeparam>
         /// <param name="code">The code block of the using operator with return value.</param>
-        /// <param name="continueOnCapturedContext">
-        ///     <see langword="true" /> to attempt to marshal the continuation back
-        ///     to the captured context; otherwise, <see langword="false" /> .
-        /// </param>
         /// <returns>The asynchronous result that the code block produces.</returns>
         /// <remarks>
         ///     <see cref="ICodeScopeExtension.IsRethrowRequired" /> will never be called. Exception will be rethrown
@@ -28,8 +24,7 @@ namespace ClrPro.ESharpLang
         /// </remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public async ValueTask<TResult> EvalAsync<TResult>(
-            Func<ValueTask<TResult>> code,
-            bool continueOnCapturedContext = true)
+            Func<ValueTask<TResult>> code)
         {
             if (code == null)
             {
@@ -38,13 +33,13 @@ namespace ClrPro.ESharpLang
 
             if (ScopeExtension == null)
             {
-                return await code().ConfigureAwait(continueOnCapturedContext);
+                return await code().ConfigureAwait(false);
             }
 
             Exception? exception = null;
             try
             {
-                return await code().ConfigureAwait(continueOnCapturedContext);
+                return await code().ConfigureAwait(false);
             }
             catch (Exception ex)
             {
@@ -53,7 +48,7 @@ namespace ClrPro.ESharpLang
             }
             finally
             {
-                await ScopeExtension.OnLoseCodeScopeAsync(exception);
+                await ScopeExtension.OnLoseCodeScopeAsync(exception).ConfigureAwait(false);
             }
         }
 
@@ -62,10 +57,6 @@ namespace ClrPro.ESharpLang
         /// </summary>
         /// <typeparam name="TResult">The eval result type.</typeparam>
         /// <param name="code">The code block of the using operator with return value.</param>
-        /// <param name="continueOnCapturedContext">
-        ///     <see langword="true" /> to attempt to marshal the continuation back
-        ///     to the captured context; otherwise, <see langword="false" /> .
-        /// </param>
         /// <returns>The asynchronous result that the code block produces.</returns>
         /// <remarks>
         ///     <see cref="ICodeScopeExtension.IsRethrowRequired" /> will never be called. Exception will be rethrown
@@ -73,8 +64,7 @@ namespace ClrPro.ESharpLang
         /// </remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public async ValueTask<TResult> EvalAsync<TResult>(
-            Func<T, ValueTask<TResult>> code,
-            bool continueOnCapturedContext = true)
+            Func<T, ValueTask<TResult>> code)
         {
             if (code == null)
             {
@@ -83,13 +73,13 @@ namespace ClrPro.ESharpLang
 
             if (ScopeExtension == null)
             {
-                return await code(ScopeExtension).ConfigureAwait(continueOnCapturedContext);
+                return await code(ScopeExtension).ConfigureAwait(false);
             }
 
             Exception? exception = null;
             try
             {
-                return await code(ScopeExtension).ConfigureAwait(continueOnCapturedContext);
+                return await code(ScopeExtension).ConfigureAwait(false);
             }
             catch (Exception ex)
             {
@@ -98,7 +88,7 @@ namespace ClrPro.ESharpLang
             }
             finally
             {
-                await ScopeExtension.OnLoseCodeScopeAsync(exception);
+                await ScopeExtension.OnLoseCodeScopeAsync(exception).ConfigureAwait(false);
             }
         }
 
@@ -107,10 +97,6 @@ namespace ClrPro.ESharpLang
         /// </summary>
         /// <typeparam name="TResult">The eval result type.</typeparam>
         /// <param name="code">The code block of the using operator with return value.</param>
-        /// <param name="continueOnCapturedContext">
-        ///     <see langword="true" /> to attempt to marshal the continuation back
-        ///     to the captured context; otherwise, <see langword="false" /> .
-        /// </param>
         /// <returns>The asynchronous result that the code block produces.</returns>
         /// <remarks>
         ///     <see cref="ICodeScopeExtension.IsRethrowRequired" /> will never be called. Exception will be rethrown
@@ -118,8 +104,7 @@ namespace ClrPro.ESharpLang
         /// </remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public async ValueTask<TResult> EvalTAsync<TResult>(
-            Func<Task<TResult>> code,
-            bool continueOnCapturedContext = true)
+            Func<Task<TResult>> code)
         {
             if (code == null)
             {
@@ -128,13 +113,13 @@ namespace ClrPro.ESharpLang
 
             if (ScopeExtension == null)
             {
-                return await code().ConfigureAwait(continueOnCapturedContext);
+                return await code().ConfigureAwait(false);
             }
 
             Exception? exception = null;
             try
             {
-                return await code().ConfigureAwait(continueOnCapturedContext);
+                return await code().ConfigureAwait(false);
             }
             catch (Exception ex)
             {
@@ -143,7 +128,7 @@ namespace ClrPro.ESharpLang
             }
             finally
             {
-                await ScopeExtension.OnLoseCodeScopeAsync(exception);
+                await ScopeExtension.OnLoseCodeScopeAsync(exception).ConfigureAwait(false);
             }
         }
 
@@ -152,10 +137,6 @@ namespace ClrPro.ESharpLang
         /// </summary>
         /// <typeparam name="TResult">The eval result type.</typeparam>
         /// <param name="code">The code block of the using operator with return value.</param>
-        /// <param name="continueOnCapturedContext">
-        ///     <see langword="true" /> to attempt to marshal the continuation back
-        ///     to the captured context; otherwise, <see langword="false" /> .
-        /// </param>
         /// <returns>The asynchronous result that the code block produces.</returns>
         /// <remarks>
         ///     <see cref="ICodeScopeExtension.IsRethrowRequired" /> will never be called. Exception will be rethrown
@@ -163,8 +144,7 @@ namespace ClrPro.ESharpLang
         /// </remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public async ValueTask<TResult> EvalTAsync<TResult>(
-            Func<T, Task<TResult>> code,
-            bool continueOnCapturedContext = true)
+            Func<T, Task<TResult>> code)
         {
             if (code == null)
             {
@@ -173,13 +153,13 @@ namespace ClrPro.ESharpLang
 
             if (ScopeExtension == null)
             {
-                return await code(ScopeExtension).ConfigureAwait(continueOnCapturedContext);
+                return await code(ScopeExtension).ConfigureAwait(false);
             }
 
             Exception? exception = null;
             try
             {
-                return await code(ScopeExtension).ConfigureAwait(continueOnCapturedContext);
+                return await code(ScopeExtension).ConfigureAwait(false);
             }
             catch (Exception ex)
             {
@@ -188,7 +168,7 @@ namespace ClrPro.ESharpLang
             }
             finally
             {
-                await ScopeExtension.OnLoseCodeScopeAsync(exception);
+                await ScopeExtension.OnLoseCodeScopeAsync(exception).ConfigureAwait(false);
             }
         }
     }

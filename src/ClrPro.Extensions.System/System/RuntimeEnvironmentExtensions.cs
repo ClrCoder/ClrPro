@@ -23,18 +23,13 @@ namespace System
         ///     <see cref="IRuntimeEnvironment.ProcessMutedException" />, otherwise pass exception to the
         ///     <see cref="IRuntimeEnvironment.ProcessUnhandledException" />.
         /// </param>
-        /// <param name="continueOnCapturedContext">
-        ///     <see langword="true" /> to attempt to marshal the continuation back
-        ///     to the captured context; otherwise, <see langword="false" /> .
-        /// </param>
         /// <returns>
         ///     Async execution <c>task</c>.
         /// </returns>
         public static async ValueTask ConfigureNoThrow(
             this ValueTask task,
             IRuntimeEnvironment runtimeEnvironment,
-            bool allowMute = false,
-            bool continueOnCapturedContext = true)
+            bool allowMute = false)
         {
             if (runtimeEnvironment == null)
             {
@@ -43,14 +38,7 @@ namespace System
 
             try
             {
-                if (!continueOnCapturedContext)
-                {
-                    await task.ConfigureAwait(false);
-                }
-                else
-                {
-                    await task;
-                }
+                await task.ConfigureAwait(false);
             }
             catch (Exception ex) when (runtimeEnvironment.IsRedirectableException(ex))
             {
@@ -75,18 +63,13 @@ namespace System
         ///     If the task was finished with errors: <see langword="true" /> allows to mute exception,
         ///     otherwise process it as unhandled.
         /// </param>
-        /// <param name="continueOnCapturedContext">
-        ///     <see langword="true" /> to attempt to marshal the continuation back
-        ///     to the captured context; otherwise, <see langword="false" /> .
-        /// </param>
         /// <returns>
         ///     Async execution <c>task</c>.
         /// </returns>
         public static async ValueTask ConfigureNoThrow(
             this Task task,
             [NotNull] IRuntimeEnvironment runtimeEnvironment,
-            bool allowMute = false,
-            bool continueOnCapturedContext = true)
+            bool allowMute = false)
         {
             if (task == null)
             {
@@ -100,7 +83,7 @@ namespace System
 
             try
             {
-                await task.ConfigureAwait(continueOnCapturedContext);
+                await task.ConfigureAwait(false);
             }
             catch (Exception ex) when (runtimeEnvironment.IsRedirectableException(ex))
             {

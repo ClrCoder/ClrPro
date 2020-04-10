@@ -7,6 +7,8 @@ namespace ClrPro
     using ClrPro.ESharpLang;
     using JetBrains.Annotations;
 
+    // TODO: Add Dispose ownership annotation when it will be available: https://github.com/dotnet/runtime/issues/29631
+
     /// <summary>
     ///     Emulation# (E#) - Upcoming C# language features polyfills and useful language extensions.
     /// </summary>

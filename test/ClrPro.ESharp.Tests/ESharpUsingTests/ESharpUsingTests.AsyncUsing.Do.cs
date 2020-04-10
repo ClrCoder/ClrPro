@@ -1,4 +1,4 @@
-﻿// Copyright (c) ClrCoder community. All Rights Reserved.
+// Copyright (c) ClrCoder community. All Rights Reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
 namespace ClrPro.ESharpLang.Tests
@@ -28,6 +28,7 @@ namespace ClrPro.ESharpLang.Tests
                     dummy = new DummyAsyncCodeScopeExtension();
                     ESharp.UsingAsync(dummy)
                         .DoAsync(() => throw new InvalidOperationException("Dummy exception."))
+                        .AsTask()
                         .GetAwaiter()
                         .GetResult();
                 }).Should().Throw<InvalidOperationException>();
@@ -48,11 +49,14 @@ namespace ClrPro.ESharpLang.Tests
                 {
                     dummy = new DummyAsyncCodeScopeExtension();
                     ESharp.UsingAsync(dummy).DoAsync(
-                        d =>
-                        {
-                            d.Should().Be(dummy);
-                            throw new InvalidOperationException("Dummy exception.");
-                        }).GetAwaiter().GetResult();
+                            d =>
+                            {
+                                d.Should().Be(dummy);
+                                throw new InvalidOperationException("Dummy exception.");
+                            })
+                        .AsTask()
+                        .GetAwaiter()
+                        .GetResult();
                 }).Should().Throw<InvalidOperationException>();
             dummy.TerminateReasonException.Should().BeOfType<InvalidOperationException>();
 

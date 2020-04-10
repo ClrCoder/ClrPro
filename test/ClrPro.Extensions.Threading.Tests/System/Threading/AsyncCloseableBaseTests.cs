@@ -14,10 +14,14 @@ namespace System.Threading
         [Fact]
         public async Task SimpleTest()
         {
+#pragma warning disable CA2000 // Dispose objects before losing scope
             var dummyCloseable = new DummyCloseable();
+#pragma warning restore CA2000 // Dispose objects before losing scope
+
+#pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
             var task = ESharp.UsingAsync(dummyCloseable).DoAsync(
-                async () => { }
-            );
+                async () => { });
+#pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
 
 #pragma warning disable 4014
             Task.Run(
@@ -27,7 +31,7 @@ namespace System.Threading
                     dummyCloseable.StopAllPendingOperations();
                 });
 #pragma warning restore 4014
-            await task;
+            await task.ConfigureAwait(false);
         }
 
         private struct DummyCloseableState : IAsyncCloseableState, IEquatable<DummyCloseableState>

@@ -1,4 +1,4 @@
-﻿// Copyright (c) ClrCoder community. All Rights Reserved.
+// Copyright (c) ClrCoder community. All Rights Reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
 namespace ClrPro.ESharpLang.Tests
@@ -45,6 +45,7 @@ namespace ClrPro.ESharpLang.Tests
                                 return "Hello!";
 #pragma warning restore 162
                             })
+                        .AsTask()
                         .GetAwaiter()
                         .GetResult();
                 }).Should().Throw<InvalidOperationException>();
@@ -75,15 +76,18 @@ namespace ClrPro.ESharpLang.Tests
                 {
                     dummy = new DummyCodeScopeExtension();
                     strRes = ESharp.Using(dummy).EvalAsync(
-                        async d =>
-                        {
-                            await Task.Delay(10);
-                            d.Should().Be(dummy);
-                            throw new InvalidOperationException("Dummy exception.");
+                            async d =>
+                            {
+                                await Task.Delay(10);
+                                d.Should().Be(dummy);
+                                throw new InvalidOperationException("Dummy exception.");
 #pragma warning disable 162
-                            return "Hello !!!";
+                                return "Hello !!!";
 #pragma warning restore 162
-                        }).GetAwaiter().GetResult();
+                            })
+                        .AsTask()
+                        .GetAwaiter()
+                        .GetResult();
                 }).Should().Throw<InvalidOperationException>();
 
             strRes.Should().Be(null);
@@ -127,6 +131,7 @@ namespace ClrPro.ESharpLang.Tests
                                 return "Hello!";
 #pragma warning restore 162
                             })
+                        .AsTask()
                         .GetAwaiter()
                         .GetResult();
                 }).Should().Throw<InvalidOperationException>();
@@ -157,15 +162,18 @@ namespace ClrPro.ESharpLang.Tests
                 {
                     dummy = new DummyCodeScopeExtension();
                     strRes = ESharp.Using(dummy).EvalTAsync(
-                        async d =>
-                        {
-                            await Task.Delay(10);
-                            d.Should().Be(dummy);
-                            throw new InvalidOperationException("Dummy exception.");
+                            async d =>
+                            {
+                                await Task.Delay(10);
+                                d.Should().Be(dummy);
+                                throw new InvalidOperationException("Dummy exception.");
 #pragma warning disable 162
-                            return "Hello !!!";
+                                return "Hello !!!";
 #pragma warning restore 162
-                        }).GetAwaiter().GetResult();
+                            })
+                        .AsTask()
+                        .GetAwaiter()
+                        .GetResult();
                 }).Should().Throw<InvalidOperationException>();
 
             strRes.Should().Be(null);

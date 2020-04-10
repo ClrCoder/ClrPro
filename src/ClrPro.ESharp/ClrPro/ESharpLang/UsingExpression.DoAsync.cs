@@ -16,19 +16,15 @@ namespace ClrPro.ESharpLang
         ///     Do clause of the using operator syntax.
         /// </summary>
         /// <param name="code">The code block of the using operator.</param>
-        /// <param name="continueOnCapturedContext">
-        ///     <see langword="true" /> to attempt to marshal the continuation back
-        ///     to the captured context; otherwise, <see langword="false" /> .
-        /// </param>
         /// <returns>The asynchronous operation task.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public async ValueTask DoAsync(Func<ValueTask>? code, bool continueOnCapturedContext = true)
+        public async ValueTask DoAsync(Func<ValueTask>? code)
         {
             if (ScopeExtension == null)
             {
                 if (code != null)
                 {
-                    await code().ConfigureAwait(continueOnCapturedContext);
+                    await code().ConfigureAwait(false);
                 }
             }
             else
@@ -38,7 +34,7 @@ namespace ClrPro.ESharpLang
                 {
                     if (code != null)
                     {
-                        await code().ConfigureAwait(continueOnCapturedContext);
+                        await code().ConfigureAwait(false);
                     }
 
                     codeExecuted = true;
@@ -65,19 +61,15 @@ namespace ClrPro.ESharpLang
         ///     Do clause of the using operator syntax.
         /// </summary>
         /// <param name="code">The code block of the using operator.</param>
-        /// <param name="continueOnCapturedContext">
-        ///     <see langword="true" /> to attempt to marshal the continuation back
-        ///     to the captured context; otherwise, <see langword="false" /> .
-        /// </param>
         /// <returns>The asynchronous operation task.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public async ValueTask DoAsync(Func<T, ValueTask>? code, bool continueOnCapturedContext = true)
+        public async ValueTask DoAsync(Func<T, ValueTask>? code)
         {
             if (ScopeExtension == null)
             {
                 if (code != null)
                 {
-                    await code(ScopeExtension).ConfigureAwait(continueOnCapturedContext);
+                    await code(ScopeExtension).ConfigureAwait(false);
                 }
             }
             else
@@ -87,7 +79,7 @@ namespace ClrPro.ESharpLang
                 {
                     if (code != null)
                     {
-                        await code(ScopeExtension).ConfigureAwait(continueOnCapturedContext);
+                        await code(ScopeExtension).ConfigureAwait(false);
                     }
 
                     codeExecuted = true;
@@ -114,19 +106,15 @@ namespace ClrPro.ESharpLang
         ///     Do clause of the using operator syntax.
         /// </summary>
         /// <param name="code">The code block of the using operator.</param>
-        /// <param name="continueOnCapturedContext">
-        ///     <see langword="true" /> to attempt to marshal the continuation back
-        ///     to the captured context; otherwise, <see langword="false" /> .
-        /// </param>
         /// <returns>The asynchronous operation task.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public async ValueTask DoTAsync(Func<Task>? code, bool continueOnCapturedContext = true)
+        public async ValueTask DoTAsync(Func<Task>? code)
         {
             if (ScopeExtension == null)
             {
                 if (code != null)
                 {
-                    await code().ConfigureAwait(continueOnCapturedContext);
+                    await code().ConfigureAwait(false);
                 }
             }
             else
@@ -136,7 +124,7 @@ namespace ClrPro.ESharpLang
                 {
                     if (code != null)
                     {
-                        await code().ConfigureAwait(continueOnCapturedContext);
+                        await code().ConfigureAwait(false);
                     }
 
                     codeExecuted = true;
@@ -163,19 +151,15 @@ namespace ClrPro.ESharpLang
         ///     Do clause of the using operator syntax.
         /// </summary>
         /// <param name="code">The code block of the using operator.</param>
-        /// <param name="continueOnCapturedContext">
-        ///     <see langword="true" /> to attempt to marshal the continuation back
-        ///     to the captured context; otherwise, <see langword="false" /> .
-        /// </param>
         /// <returns>The asynchronous operation task.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public async ValueTask DoTAsync(Func<T, ValueTask>? code, bool continueOnCapturedContext = true)
+        public async ValueTask DoTAsync(Func<T, ValueTask>? code)
         {
             if (ScopeExtension == null)
             {
                 if (code != null)
                 {
-                    await code(ScopeExtension).ConfigureAwait(continueOnCapturedContext);
+                    await code(ScopeExtension).ConfigureAwait(false);
                 }
             }
             else
@@ -185,7 +169,7 @@ namespace ClrPro.ESharpLang
                 {
                     if (code != null)
                     {
-                        await code(ScopeExtension).ConfigureAwait(continueOnCapturedContext);
+                        await code(ScopeExtension).ConfigureAwait(false);
                     }
 
                     codeExecuted = true;

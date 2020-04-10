@@ -12,7 +12,7 @@ namespace ClrPro.Extensions.BusinessDomain
     /// </summary>
     /// <typeparam name="TUowBound">The type of the unit of work bound domain accessor.</typeparam>
     /// <remarks>
-    ///     <para>Should be resolved from the IoC and passed to the <see cref="IUnitOfWorkFactory{TServiceRestriction}" />.</para>
+    ///     <para>Should be resolved from the IoC and passed to the <see cref="IUnitOfWorkFactory" />.</para>
     ///     <para>The DDD approach is described here <see href="https://en.wikipedia.org/wiki/Domain-driven_design" />.</para>
     ///     <para>
     ///         Even if currently there is no any reason for this interface, it should be introduced as an extension point.

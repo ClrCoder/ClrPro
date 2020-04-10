@@ -11,6 +11,9 @@ namespace ClrPro.ESharpLang
     /// <summary>
     ///     Using operator chain syntax context before ".Do" clause.
     /// </summary>
+    /// <remarks>
+    ///     The ESharp.Using methods family can't provide maximal performance. The aim is advanced syntax.
+    /// </remarks>
     /// <typeparam name="T">The type of the scope extension.</typeparam>
     [PublicAPI]
     [SuppressMessage(
