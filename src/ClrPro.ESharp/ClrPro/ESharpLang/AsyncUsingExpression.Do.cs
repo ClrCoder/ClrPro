@@ -15,16 +15,18 @@ namespace ClrPro.ESharpLang
     /// <remarks>
     ///     The ESharp.Using methods family can't provide maximal performance. The aim is advanced syntax.
     /// </remarks>
-    /// <typeparam name="T">The type of the scope extension.</typeparam>
+    /// <typeparam name="TScopeExt">The type of the scope extension.</typeparam>
+    /// <typeparam name="TUsingVar">The type of the variable that passed to the using operator.</typeparam>
     [PublicAPI]
     [SuppressMessage(
         "Performance",
         "CA1815:Override equals and operator equals on value types",
         Justification = "This is syntax sugar only construct.")]
-    public partial struct AsyncUsingExpression<T>
-        where T : IAsyncCodeScopeExtension?
+    public partial struct AsyncUsingExpression<TScopeExt, TUsingVar>
+        where TScopeExt : IAsyncCodeScopeExtension?
     {
-        internal T ScopeExtension;
+        internal TScopeExt ScopeExtension;
+        internal TUsingVar UsingVar;
 
         /// <summary>
         ///     Do clause of the using operator syntax.
@@ -70,18 +72,18 @@ namespace ClrPro.ESharpLang
         /// <param name="code">The code block of the using operator.</param>
         /// <returns>The asynchronous operation task.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public async ValueTask Do(Action<T>? code)
+        public async ValueTask Do(Action<TUsingVar>? code)
         {
             if (ScopeExtension == null)
             {
-                code?.Invoke(ScopeExtension);
+                code?.Invoke(UsingVar);
             }
             else
             {
                 var codeExecuted = false;
                 try
                 {
-                    code?.Invoke(ScopeExtension);
+                    code?.Invoke(UsingVar);
                     codeExecuted = true;
                 }
                 catch (Exception ex)

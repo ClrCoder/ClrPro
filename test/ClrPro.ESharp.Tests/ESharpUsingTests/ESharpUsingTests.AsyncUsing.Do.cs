@@ -27,7 +27,7 @@ namespace ClrPro.ESharpLang.Tests
                 {
                     dummy = new DummyAsyncCodeScopeExtension();
                     ESharp.UsingAsync(dummy)
-                        .DoAsync(() => throw new InvalidOperationException("Dummy exception."))
+                        .Do(() => throw new InvalidOperationException("Dummy exception."))
                         .AsTask()
                         .GetAwaiter()
                         .GetResult();
@@ -48,7 +48,7 @@ namespace ClrPro.ESharpLang.Tests
                 () =>
                 {
                     dummy = new DummyAsyncCodeScopeExtension();
-                    ESharp.UsingAsync(dummy).DoAsync(
+                    ESharp.UsingAsync(dummy).Do(
                             d =>
                             {
                                 d.Should().Be(dummy);

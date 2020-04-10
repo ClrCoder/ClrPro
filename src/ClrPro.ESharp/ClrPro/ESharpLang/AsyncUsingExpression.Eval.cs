@@ -10,7 +10,8 @@ namespace ClrPro.ESharpLang
     /// <content>
     ///     "Eval" methods implementation.
     /// </content>
-    public partial struct AsyncUsingExpression<T>
+    // ReSharper disable once UnusedTypeParameter
+    public partial struct AsyncUsingExpression<TScopeExt, TUsingVar>
     {
         /// <summary>
         ///     Eval clause of the emulated using operator syntax (will not be supported by the C# language).
@@ -23,7 +24,7 @@ namespace ClrPro.ESharpLang
         ///     unconditionally.
         /// </remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public async ValueTask<TResult> Eval<TResult>(Func<T, TResult> code)
+        public async ValueTask<TResult> Eval<TResult>(Func<TUsingVar, TResult> code)
         {
             if (code == null)
             {
@@ -32,13 +33,13 @@ namespace ClrPro.ESharpLang
 
             if (ScopeExtension == null)
             {
-                return code(ScopeExtension);
+                return code(UsingVar);
             }
 
             Exception? exception = null;
             try
             {
-                return code(ScopeExtension);
+                return code(UsingVar);
             }
             catch (Exception ex)
             {

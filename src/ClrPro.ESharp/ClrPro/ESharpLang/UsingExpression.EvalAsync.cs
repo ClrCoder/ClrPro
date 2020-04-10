@@ -10,7 +10,7 @@ namespace ClrPro.ESharpLang
     /// <content>
     ///     "EvalAsync" methods implementation.
     /// </content>
-    public partial struct UsingExpression<T>
+    public partial struct UsingExpression<TScopeExt, TUsingVar>
     {
         /// <summary>
         ///     Eval clause of the emulated using operator syntax (will not be supported by the C# language).
@@ -64,7 +64,7 @@ namespace ClrPro.ESharpLang
         /// </remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public async ValueTask<TResult> EvalAsync<TResult>(
-            Func<T, ValueTask<TResult>> code)
+            Func<TUsingVar, ValueTask<TResult>> code)
         {
             if (code == null)
             {
@@ -73,13 +73,13 @@ namespace ClrPro.ESharpLang
 
             if (ScopeExtension == null)
             {
-                return await code(ScopeExtension).ConfigureAwait(false);
+                return await code(UsingVar).ConfigureAwait(false);
             }
 
             Exception? exception = null;
             try
             {
-                return await code(ScopeExtension).ConfigureAwait(false);
+                return await code(UsingVar).ConfigureAwait(false);
             }
             catch (Exception ex)
             {
@@ -144,7 +144,7 @@ namespace ClrPro.ESharpLang
         /// </remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public async ValueTask<TResult> EvalTAsync<TResult>(
-            Func<T, Task<TResult>> code)
+            Func<TUsingVar, Task<TResult>> code)
         {
             if (code == null)
             {
@@ -153,13 +153,13 @@ namespace ClrPro.ESharpLang
 
             if (ScopeExtension == null)
             {
-                return await code(ScopeExtension).ConfigureAwait(false);
+                return await code(UsingVar).ConfigureAwait(false);
             }
 
             Exception? exception = null;
             try
             {
-                return await code(ScopeExtension).ConfigureAwait(false);
+                return await code(UsingVar).ConfigureAwait(false);
             }
             catch (Exception ex)
             {

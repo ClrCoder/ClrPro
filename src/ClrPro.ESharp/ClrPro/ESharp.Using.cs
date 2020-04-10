@@ -26,10 +26,14 @@ namespace ClrPro
         /// <param name="scopeExtension">The scope extension (handler of the code scope events).</param>
         /// <returns>The chain syntax context.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static UsingExpression<T> Using<T>(T scopeExtension)
+        public static UsingExpression<T, T> Using<T>(T scopeExtension)
             where T : ICodeScopeExtension?
         {
-            return new UsingExpression<T> { ScopeExtension = scopeExtension };
+            return new UsingExpression<T, T>
+            {
+                ScopeExtension = scopeExtension,
+                UsingVar = scopeExtension,
+            };
         }
 
         /// <summary>
@@ -39,10 +43,14 @@ namespace ClrPro
         /// <param name="scopeExtension">The scope extension (handler of the code scope events).</param>
         /// <returns>The chain syntax context.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static AsyncUsingExpression<T> UsingAsync<T>(T scopeExtension)
+        public static AsyncUsingExpression<T, T> UsingAsync<T>(T scopeExtension)
             where T : IAsyncCodeScopeExtension?
         {
-            return new AsyncUsingExpression<T> { ScopeExtension = scopeExtension };
+            return new AsyncUsingExpression<T, T>
+            {
+                ScopeExtension = scopeExtension,
+                UsingVar = scopeExtension,
+            };
         }
     }
 }

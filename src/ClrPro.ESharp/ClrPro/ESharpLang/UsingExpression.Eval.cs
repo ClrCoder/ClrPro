@@ -9,7 +9,7 @@ namespace ClrPro.ESharpLang
     /// <content>
     ///     "Eval" methods implementation.
     /// </content>
-    public partial struct UsingExpression<T>
+    public partial struct UsingExpression<TScopeExt, TUsingVar>
     {
         /// <summary>
         ///     Eval clause of the emulated using operator syntax (will not be supported by the C# language).
@@ -61,7 +61,7 @@ namespace ClrPro.ESharpLang
         ///     unconditionally.
         /// </remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public TResult Eval<TResult>(Func<T, TResult> code)
+        public TResult Eval<TResult>(Func<TUsingVar, TResult> code)
         {
             if (code == null)
             {
@@ -70,13 +70,13 @@ namespace ClrPro.ESharpLang
 
             if (ScopeExtension == null)
             {
-                return code.Invoke(ScopeExtension);
+                return code.Invoke(UsingVar);
             }
 
             Exception? exception = null;
             try
             {
-                return code.Invoke(ScopeExtension);
+                return code.Invoke(UsingVar);
             }
             catch (Exception ex)
             {

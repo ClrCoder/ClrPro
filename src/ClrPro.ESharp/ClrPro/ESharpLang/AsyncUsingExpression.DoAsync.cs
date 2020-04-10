@@ -10,7 +10,8 @@ namespace ClrPro.ESharpLang
     /// <content>
     ///     "DoAsync" methods implementation.
     /// </content>
-    public partial struct AsyncUsingExpression<T>
+    // ReSharper disable once UnusedTypeParameter
+    public partial struct AsyncUsingExpression<TScopeExt, TUsingVar>
     {
         /// <summary>
         ///     Do clause of the using operator syntax.
@@ -63,13 +64,13 @@ namespace ClrPro.ESharpLang
         /// <param name="code">The code block of the using operator.</param>
         /// <returns>The asynchronous operation task.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public async ValueTask DoAsync(Func<T, ValueTask>? code)
+        public async ValueTask DoAsync(Func<TUsingVar, ValueTask>? code)
         {
             if (ScopeExtension == null)
             {
                 if (code != null)
                 {
-                    await code(ScopeExtension).ConfigureAwait(false);
+                    await code(UsingVar).ConfigureAwait(false);
                 }
             }
             else
@@ -79,7 +80,7 @@ namespace ClrPro.ESharpLang
                 {
                     if (code != null)
                     {
-                        await code(ScopeExtension).ConfigureAwait(false);
+                        await code(UsingVar).ConfigureAwait(false);
                     }
 
                     codeExecuted = true;
@@ -153,13 +154,13 @@ namespace ClrPro.ESharpLang
         /// <param name="code">The code block of the using operator.</param>
         /// <returns>The asynchronous operation task.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public async ValueTask DoTAsync(Func<T, Task>? code)
+        public async ValueTask DoTAsync(Func<TUsingVar, Task>? code)
         {
             if (ScopeExtension == null)
             {
                 if (code != null)
                 {
-                    await code(ScopeExtension).ConfigureAwait(false);
+                    await code(UsingVar).ConfigureAwait(false);
                 }
             }
             else
@@ -169,7 +170,7 @@ namespace ClrPro.ESharpLang
                 {
                     if (code != null)
                     {
-                        await code(ScopeExtension).ConfigureAwait(false);
+                        await code(UsingVar).ConfigureAwait(false);
                     }
 
                     codeExecuted = true;
