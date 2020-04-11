@@ -23,7 +23,7 @@ namespace System
         public void Benchmark()
         {
             var logger = new AccumulationLogger();
-            var config = DefaultConfig.Instance.With(logger);
+            var config = DefaultConfig.Instance.AddLogger(logger);
             BenchmarkRunner.Run<RuntimeBenchmark>(config);
             _testOutput.WriteLine(logger.GetLog());
         }
