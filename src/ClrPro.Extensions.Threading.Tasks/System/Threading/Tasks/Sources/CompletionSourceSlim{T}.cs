@@ -36,7 +36,7 @@ namespace System.Threading.Tasks.Sources
         /// <inheritdoc />
         void IValueTaskSource.OnCompleted(
             Action<object?> continuation,
-            object state,
+            object? state,
             short token,
             ValueTaskSourceOnCompletedFlags flags)
         {

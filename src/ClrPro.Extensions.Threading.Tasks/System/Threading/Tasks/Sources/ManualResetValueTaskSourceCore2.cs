@@ -52,10 +52,17 @@ namespace System.Threading.Tasks.Sources
                         }
                         else
                         {
+#if NETSTANDARD2_1
                             ThreadPoolShim.UnsafeQueueUserWorkItem(
                                 invokeData.Continuation,
                                 invokeData.ContinuationState,
                                 true);
+#else
+                            ThreadPool.UnsafeQueueUserWorkItem(
+                                invokeData.Continuation,
+                                invokeData.ContinuationState,
+                                true);
+#endif
                         }
                     }
                     else
@@ -264,8 +271,13 @@ namespace System.Threading.Tasks.Sources
                         }
                         else
                         {
+#if NETSTANDARD2_1
                             // This is the most popular case.
                             ThreadPoolShim.UnsafeQueueUserWorkItem(continuation, state, true);
+#else
+                            // This is the most popular case.
+                            ThreadPool.UnsafeQueueUserWorkItem(continuation, state, true);
+#endif
                         }
 
                         break;
@@ -359,7 +371,11 @@ namespace System.Threading.Tasks.Sources
                         }
                         else
                         {
+#if NETSTANDARD2_1
                             ThreadPoolShim.UnsafeQueueUserWorkItem(_continuation, _continuationState, true);
+#else
+                            ThreadPool.UnsafeQueueUserWorkItem(_continuation, _continuationState, true);
+#endif
                         }
                     }
                     else
