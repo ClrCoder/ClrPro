@@ -16,11 +16,14 @@ namespace System.Threading
     ///     The base implementation for the <see cref="IAsyncCloseable" /> abstraction.
     /// </summary>
     /// <typeparam name="TState">The final type of the state.</typeparam>
-    /// <typeparam name="TAtomic">The atomic storage implementation fro the state.</typeparam>
+    /// <typeparam name="TAtomicState">The atomic storage implementation fro the state.</typeparam>
+    /// <remarks>
+    ///     Object can resurrected but only in "Closed Critical state".
+    /// </remarks>
     [PublicAPI]
-    public abstract partial class AsyncCloseableBase<TState, TAtomic> : IAsyncCloseable
-        where TState : struct, IAsyncCloseableState
-        where TAtomic : struct, IAtomic<TState>
+    public abstract partial class AsyncCloseableBase<TState, TAtomicState> : IAsyncCloseable
+        where TState : struct, IAsyncCloseableBaseState
+        where TAtomicState : struct, IAtomic<TState>
     {
         /// <summary>
         ///     The atomic storage for the object state.
@@ -33,27 +36,32 @@ namespace System.Threading
             "StyleCop.CSharp.MaintainabilityRules",
             "SA1401:Fields should be private",
             Justification = "Reviewed")]
-        protected TAtomic atomicState;
+        protected TAtomicState atomicState;
 
         private readonly CompletionSourceSlim _pendingOperationsCompleted = new CompletionSourceSlim();
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="AsyncCloseableBase{TState, TAtomic}" /> class.
+        ///     Initializes a new instance of the <see cref="AsyncCloseableBase{TState, TAtomicState}" /> class.
         /// </summary>
         /// <param name="atomicState">The initial state of the atomic storage.</param>
-        protected AsyncCloseableBase(TAtomic atomicState)
+        protected AsyncCloseableBase(TAtomicState atomicState)
         {
             this.atomicState = atomicState;
         }
 
         /// <summary>
-        ///     Finalizes an instance of the <see cref="AsyncCloseableBase{TState, TAtomic}" /> class.
+        ///     Finalizes an instance of the <see cref="AsyncCloseableBase{TState, TAtomicState}" /> class.
         /// </summary>
         ~AsyncCloseableBase()
         {
+            // Nobody else using this object except the finalizer.
+            var observedState = atomicState.Read();
+            observedState.SetClosedCritical();
+            atomicState.Write(observedState);
+
             // If the finalizer was called, than something goes wrong with the object lifecycle.
             // We needs to release critical resources to avoid leaks or deadlocks.
-            DisposeCritical();
+            CloseCritical();
         }
 
         /// <inheritdoc />
@@ -103,22 +111,26 @@ namespace System.Threading
             var observedState = atomicState.Read();
 
             TState nextState;
+            var switchedToClosingState = false;
+            bool closeRequestAccepted;
             do
             {
+                closeRequestAccepted = false;
                 nextState = observedState;
                 if (observedState.Status != ClosingStatus.Alive)
                 {
+                    closeRequestAccepted = true;
                     break;
                 }
 
-                nextState.AcceptCloseRequest(terminateReason != null);
+                switchedToClosingState = nextState.AcceptCloseRequest(terminateReason != null);
             }
             while (atomicState.CompareExchangeStrong(nextState, ref observedState));
 
-            if (nextState.Status == ClosingStatus.Alive)
+            if (closeRequestAccepted)
             {
                 // ReSharper disable once ConvertIfStatementToConditionalTernaryExpression
-                if (!nextState.AreOperationsPending())
+                if (switchedToClosingState)
                 {
                     closeTask = CloseAsync(terminateReason);
                 }
@@ -134,13 +146,47 @@ namespace System.Threading
                 closeTask = default;
             }
 
-            return nextState.Status == ClosingStatus.Alive;
+            return closeRequestAccepted;
+        }
+
+        /// <summary>
+        ///     This method finalizes close logic.
+        /// </summary>
+        /// <remarks>
+        ///     Should be called in the finally block of the <see cref="CloseAsync(Exception?)" /> method.
+        /// </remarks>
+        [SuppressMessage(
+            "Usage",
+            "CA1816:Dispose methods should call SuppressFinalize",
+            Justification = "This is alternative to IDisposable.Dispose pattern.")]
+        protected void OnCloseCompleted()
+        {
+            var observedState = atomicState.Read();
+
+            TState nextState;
+            do
+            {
+                nextState = observedState;
+                if (observedState.Status != ClosingStatus.Closing)
+                {
+                    throw new InvalidOperationException(
+                        "OnCloseCompleted should be called in the 'Closing' state at the end of the closing operation.");
+                }
+
+                nextState.SetClosed();
+            }
+            while (atomicState.CompareExchangeStrong(nextState, ref observedState));
+
+            GC.SuppressFinalize(this);
         }
 
         /// <summary>
         ///     Disposes unmanaged resources, forcefully releases locks.
         /// </summary>
-        protected virtual void DisposeCritical()
+        /// <remarks>
+        ///     This method will only be called in exceptional path, where normal close wasn't invoked.
+        /// </remarks>
+        protected virtual void CloseCritical()
         {
         }
     }

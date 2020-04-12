@@ -10,7 +10,7 @@ namespace System.Runtime.CompilerServices
     ///     <see cref="CallerMemberNameAttribute" />, <see cref="CallerLineNumberAttribute" />.
     /// </summary>
     [PublicAPI]
-    public struct CallerInfo : IEquatable<CallerInfo>
+    public readonly struct CallerInfo : IEquatable<CallerInfo>
     {
         /// <summary>
         ///     Initializes a new instance of the <see cref="CallerInfo" /> struct.

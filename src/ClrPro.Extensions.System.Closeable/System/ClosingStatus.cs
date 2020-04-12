@@ -14,7 +14,7 @@ namespace System
         /// <summary>
         ///     Object is alive.
         /// </summary>
-        Alive,
+        Alive = default,
 
         /// <summary>
         ///     Status where close was requested but close procedure not yet started due to pending operations.

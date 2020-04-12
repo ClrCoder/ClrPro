@@ -19,7 +19,7 @@ namespace System.Threading
         "Design",
         "CA1033:Interface methods should be callable by child types",
         Justification = "Finally we have method to override in inheritors.")]
-    public abstract partial class AsyncCloseableBase<TState, TAtomic>
+    public abstract partial class AsyncCloseableBase<TState, TAtomicState>
     {
 #pragma warning disable SA1201 // Elements should appear in the correct order
 

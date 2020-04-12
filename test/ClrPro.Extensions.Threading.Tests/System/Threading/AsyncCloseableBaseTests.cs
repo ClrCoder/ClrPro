@@ -3,7 +3,6 @@
 
 namespace System.Threading
 {
-    using System.Diagnostics;
     using System.Threading.Atomics;
     using System.Threading.Tasks;
     using ClrPro;
@@ -34,108 +33,51 @@ namespace System.Threading
             await task.ConfigureAwait(false);
         }
 
-        private struct DummyCloseableState : IAsyncCloseableState, IEquatable<DummyCloseableState>
-        {
-            public DummyCloseableState(bool operationsPending)
-            {
-                Status = default;
-                WasTerminated = default;
-                OperationsPending = operationsPending;
-            }
-
-            public ClosingStatus Status { get; private set; }
-
-            public bool WasTerminated { get; private set; }
-
-            public bool OperationsPending { get; private set; }
-
-            public static bool operator ==(DummyCloseableState left, DummyCloseableState right)
-            {
-                return left.Equals(right);
-            }
-
-            public static bool operator !=(DummyCloseableState left, DummyCloseableState right)
-            {
-                return !left.Equals(right);
-            }
-
-            public bool Equals(DummyCloseableState other)
-            {
-                return Status == other.Status && WasTerminated == other.WasTerminated &&
-                       OperationsPending == other.OperationsPending;
-            }
-
-            public void AcceptCloseRequest(bool isTerminating)
-            {
-                if (OperationsPending)
-                {
-                    Status = ClosingStatus.CloseRequested;
-                }
-                else
-                {
-                    Status = ClosingStatus.Closing;
-                }
-
-                WasTerminated = isTerminating;
-            }
-
-            public bool AreOperationsPending()
-            {
-                return OperationsPending;
-            }
-
-            public void SwitchToPendingOperationsFinished()
-            {
-                Debug.Assert(OperationsPending, "Our logic of the component accept only one call to this method.");
-                OperationsPending = false;
-                if (Status == ClosingStatus.CloseRequested)
-                {
-                    Status = ClosingStatus.Closing;
-                }
-            }
-
-            public override bool Equals(object? obj)
-            {
-                return obj is DummyCloseableState other && Equals(other);
-            }
-
-            public override int GetHashCode()
-            {
-                // Hashcode is useless for this structure.
-                return 0;
-            }
-        }
-
-        private class DummyCloseable : AsyncCloseableBase<DummyCloseableState, LockAtomic<DummyCloseableState>>
+        private class DummyCloseable : AsyncCloseableBase<RefCountingAsyncCloseableBaseState,
+            LockAtomic<RefCountingAsyncCloseableBaseState>>
         {
             public DummyCloseable()
-                : base(new LockAtomic<DummyCloseableState>(new object(), new DummyCloseableState(true)))
+                : base(new LockAtomic<RefCountingAsyncCloseableBaseState>(new object()))
             {
+                // Increasing references count.
+                var state = atomicState.Read();
+                state.AddRef();
+                atomicState.Write(state);
             }
 
             public void StopAllPendingOperations()
             {
                 var observedState = atomicState.Read();
 
-                DummyCloseableState nextState;
+                RefCountingAsyncCloseableBaseState nextState;
+                bool switchedToClosingState;
                 do
                 {
+                    switchedToClosingState = false;
                     nextState = observedState;
-                    if (observedState.Status != ClosingStatus.Alive)
+                    if (nextState.AreOperationsPending())
                     {
-                        break;
+                        switchedToClosingState = nextState.ReleaseRef();
                     }
-
-                    nextState.SwitchToPendingOperationsFinished();
                 }
                 while (atomicState.CompareExchangeStrong(nextState, ref observedState));
 
-                NotifyPendingOperationsCompleted();
+                if (switchedToClosingState)
+                {
+                    NotifyPendingOperationsCompleted();
+                }
             }
 
             protected override async ValueTask CloseAsync(Exception? terminateReason)
             {
-                await Task.Delay(100).ConfigureAwait(false);
+                try
+                {
+                    await Task.Delay(100).ConfigureAwait(false);
+                }
+                finally
+                {
+                    OnCloseCompleted();
+                }
             }
         }
     }
