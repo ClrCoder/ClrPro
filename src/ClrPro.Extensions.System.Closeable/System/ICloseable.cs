@@ -72,7 +72,7 @@ namespace System
         {
             if (!TryClose())
             {
-                throw new ObjectClosedException(this);
+                ThrowHelper.ThrowObjectClosedException(this);
             }
         }
     }

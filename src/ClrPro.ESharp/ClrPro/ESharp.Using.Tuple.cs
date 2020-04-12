@@ -4,6 +4,7 @@
 namespace ClrPro
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Runtime.CompilerServices;
     using ClrPro.ESharpLang;
 
@@ -20,12 +21,16 @@ namespace ClrPro
         /// <param name="tuple">The tuple with the disposable first item.</param>
         /// <returns>The chain syntax context.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        [SuppressMessage(
+            "Design",
+            "CA1062:Validate arguments of public methods",
+            Justification = "The argument has been validated.")]
         public static UsingExpression<T1, Tuple<T1>> Using<T1>(Tuple<T1> tuple)
             where T1 : ICodeScopeExtension?
         {
             if (tuple == null)
             {
-                throw new ArgumentNullException(nameof(tuple));
+                ThrowHelper.ThrowArgumentNullException(ExceptionArgument.tuple);
             }
 
             return new UsingExpression<T1, Tuple<T1>>
@@ -43,12 +48,16 @@ namespace ClrPro
         /// <param name="tuple">The tuple with the disposable first item.</param>
         /// <returns>The chain syntax context.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        [SuppressMessage(
+            "Design",
+            "CA1062:Validate arguments of public methods",
+            Justification = "The argument has been validated.")]
         public static UsingExpression<T1, Tuple<T1, T2>> Using<T1, T2>(Tuple<T1, T2> tuple)
             where T1 : ICodeScopeExtension?
         {
             if (tuple == null)
             {
-                throw new ArgumentNullException(nameof(tuple));
+                ThrowHelper.ThrowArgumentNullException(ExceptionArgument.tuple);
             }
 
             return new UsingExpression<T1, Tuple<T1, T2>>
@@ -67,12 +76,16 @@ namespace ClrPro
         /// <param name="tuple">The tuple with the disposable first item.</param>
         /// <returns>The chain syntax context.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        [SuppressMessage(
+            "Design",
+            "CA1062:Validate arguments of public methods",
+            Justification = "The argument has been validated.")]
         public static UsingExpression<T1, Tuple<T1, T2, T3>> Using<T1, T2, T3>(Tuple<T1, T2, T3> tuple)
             where T1 : ICodeScopeExtension?
         {
             if (tuple == null)
             {
-                throw new ArgumentNullException(nameof(tuple));
+                ThrowHelper.ThrowArgumentNullException(ExceptionArgument.tuple);
             }
 
             return new UsingExpression<T1, Tuple<T1, T2, T3>>
@@ -92,12 +105,16 @@ namespace ClrPro
         /// <param name="tuple">The tuple with the disposable first item.</param>
         /// <returns>The chain syntax context.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        [SuppressMessage(
+            "Design",
+            "CA1062:Validate arguments of public methods",
+            Justification = "The argument has been validated.")]
         public static UsingExpression<T1, Tuple<T1, T2, T3, T4>> Using<T1, T2, T3, T4>(Tuple<T1, T2, T3, T4> tuple)
             where T1 : ICodeScopeExtension?
         {
             if (tuple == null)
             {
-                throw new ArgumentNullException(nameof(tuple));
+                ThrowHelper.ThrowArgumentNullException(ExceptionArgument.tuple);
             }
 
             return new UsingExpression<T1, Tuple<T1, T2, T3, T4>>
@@ -118,13 +135,17 @@ namespace ClrPro
         /// <param name="tuple">The tuple with the disposable first item.</param>
         /// <returns>The chain syntax context.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        [SuppressMessage(
+            "Design",
+            "CA1062:Validate arguments of public methods",
+            Justification = "The argument has been validated.")]
         public static UsingExpression<T1, Tuple<T1, T2, T3, T4, T5>> Using<T1, T2, T3, T4, T5>(
             Tuple<T1, T2, T3, T4, T5> tuple)
             where T1 : ICodeScopeExtension?
         {
             if (tuple == null)
             {
-                throw new ArgumentNullException(nameof(tuple));
+                ThrowHelper.ThrowArgumentNullException(ExceptionArgument.tuple);
             }
 
             return new UsingExpression<T1, Tuple<T1, T2, T3, T4, T5>>
@@ -146,13 +167,17 @@ namespace ClrPro
         /// <param name="tuple">The tuple with the disposable first item.</param>
         /// <returns>The chain syntax context.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        [SuppressMessage(
+            "Design",
+            "CA1062:Validate arguments of public methods",
+            Justification = "The argument has been validated.")]
         public static UsingExpression<T1, Tuple<T1, T2, T3, T4, T5, T6>> Using<T1, T2, T3, T4, T5, T6>(
             Tuple<T1, T2, T3, T4, T5, T6> tuple)
             where T1 : ICodeScopeExtension?
         {
             if (tuple == null)
             {
-                throw new ArgumentNullException(nameof(tuple));
+                ThrowHelper.ThrowArgumentNullException(ExceptionArgument.tuple);
             }
 
             return new UsingExpression<T1, Tuple<T1, T2, T3, T4, T5, T6>>
@@ -175,13 +200,17 @@ namespace ClrPro
         /// <param name="tuple">The tuple with the disposable first item.</param>
         /// <returns>The chain syntax context.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        [SuppressMessage(
+            "Design",
+            "CA1062:Validate arguments of public methods",
+            Justification = "The argument has been validated.")]
         public static UsingExpression<T1, Tuple<T1, T2, T3, T4, T5, T6, T7>> Using<T1, T2, T3, T4, T5, T6, T7>(
             Tuple<T1, T2, T3, T4, T5, T6, T7> tuple)
             where T1 : ICodeScopeExtension?
         {
             if (tuple == null)
             {
-                throw new ArgumentNullException(nameof(tuple));
+                ThrowHelper.ThrowArgumentNullException(ExceptionArgument.tuple);
             }
 
             return new UsingExpression<T1, Tuple<T1, T2, T3, T4, T5, T6, T7>>
@@ -205,6 +234,10 @@ namespace ClrPro
         /// <param name="tuple">The tuple with the disposable first item.</param>
         /// <returns>The chain syntax context.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        [SuppressMessage(
+            "Design",
+            "CA1062:Validate arguments of public methods",
+            Justification = "The argument has been validated.")]
         public static UsingExpression<T1, Tuple<T1, T2, T3, T4, T5, T6, T7, TRest>> Using<T1, T2, T3, T4, T5, T6, T7,
             TRest>(
             Tuple<T1, T2, T3, T4, T5, T6, T7, TRest> tuple)
@@ -212,7 +245,7 @@ namespace ClrPro
         {
             if (tuple == null)
             {
-                throw new ArgumentNullException(nameof(tuple));
+                ThrowHelper.ThrowArgumentNullException(ExceptionArgument.tuple);
             }
 
             return new UsingExpression<T1, Tuple<T1, T2, T3, T4, T5, T6, T7, TRest>>

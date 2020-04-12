@@ -1,21 +1,21 @@
 // Copyright (c) ClrCoder community. All Rights Reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
-namespace System.Threading
+namespace ClrPro
 {
     using System.Diagnostics.CodeAnalysis;
 
+    [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Special Purpose enum names")]
     [SuppressMessage(
         "StyleCop.CSharp.NamingRules",
         "SA1300:Element should begin with upper-case letter",
-        Justification = "Reviewed")]
-    [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Reviewed")]
+        Justification = "Special Purpose enum names")]
     internal enum ExceptionArgument
     {
-        action,
-        completionSource,
-        continuation,
-        dispatchInfo,
-        exception,
+        args,
+        value,
+        unhandledException,
+        runtimeEnvironment,
+        task,
     }
 }

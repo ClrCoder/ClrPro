@@ -71,7 +71,7 @@ namespace System.Threading.Tasks
         {
             if (dispatchInfo == null)
             {
-                throw new ArgumentNullException(nameof(dispatchInfo));
+                ThrowHelper.ThrowArgumentNullException(ExceptionArgument.dispatchInfo);
             }
 
             return new TaskCompletionResult(TaskExceptionHolder.FromDispatchInfo(dispatchInfo));

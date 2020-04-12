@@ -71,6 +71,7 @@ namespace System
             {
                 try
                 {
+                    // Throw helper is useless here.
                     throw new UnhandledException(exception);
                 }
                 catch (UnhandledException e)

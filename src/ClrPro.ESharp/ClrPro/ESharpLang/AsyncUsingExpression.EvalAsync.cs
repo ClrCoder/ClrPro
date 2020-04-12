@@ -4,6 +4,7 @@
 namespace ClrPro.ESharpLang
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Runtime.CompilerServices;
     using System.Threading.Tasks;
 
@@ -24,12 +25,16 @@ namespace ClrPro.ESharpLang
         ///     unconditionally.
         /// </remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        [SuppressMessage(
+            "Design",
+            "CA1062:Validate arguments of public methods",
+            Justification = "The argument has been validated.")]
         public async ValueTask<TResult> EvalAsync<TResult>(
             Func<ValueTask<TResult>> code)
         {
             if (code == null)
             {
-                throw new ArgumentNullException(nameof(code));
+                ThrowHelper.ThrowArgumentNullException(ExceptionArgument.code);
             }
 
             if (ScopeExtension == null)
@@ -64,12 +69,16 @@ namespace ClrPro.ESharpLang
         ///     unconditionally.
         /// </remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        [SuppressMessage(
+            "Design",
+            "CA1062:Validate arguments of public methods",
+            Justification = "The argument has been validated.")]
         public async ValueTask<TResult> EvalAsync<TResult>(
             Func<TUsingVar, ValueTask<TResult>> code)
         {
             if (code == null)
             {
-                throw new ArgumentNullException(nameof(code));
+                ThrowHelper.ThrowArgumentNullException(ExceptionArgument.code);
             }
 
             if (ScopeExtension == null)
@@ -104,12 +113,16 @@ namespace ClrPro.ESharpLang
         ///     unconditionally.
         /// </remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        [SuppressMessage(
+            "Design",
+            "CA1062:Validate arguments of public methods",
+            Justification = "The argument has been validated.")]
         public async ValueTask<TResult> EvalTAsync<TResult>(
             Func<Task<TResult>> code)
         {
             if (code == null)
             {
-                throw new ArgumentNullException(nameof(code));
+                ThrowHelper.ThrowArgumentNullException(ExceptionArgument.code);
             }
 
             if (ScopeExtension == null)
@@ -144,12 +157,16 @@ namespace ClrPro.ESharpLang
         ///     unconditionally.
         /// </remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        [SuppressMessage(
+            "Design",
+            "CA1062:Validate arguments of public methods",
+            Justification = "The argument has been validated.")]
         public async ValueTask<TResult> EvalTAsync<TResult>(
             Func<TUsingVar, Task<TResult>> code)
         {
             if (code == null)
             {
-                throw new ArgumentNullException(nameof(code));
+                ThrowHelper.ThrowArgumentNullException(ExceptionArgument.code);
             }
 
             if (ScopeExtension == null)

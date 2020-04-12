@@ -6,6 +6,7 @@ namespace System
     using System.Diagnostics;
     using System.Threading;
     using System.Threading.Tasks;
+    using ClrPro;
     using JetBrains.Annotations;
 
     /// <summary>
@@ -29,7 +30,15 @@ namespace System
         static IRuntimeEnvironment Default
         {
             get => _default;
-            set => _default = value ?? throw new ArgumentNullException(nameof(value));
+            set
+            {
+                if (value == null)
+                {
+                    ThrowHelper.ThrowArgumentNullException(ExceptionArgument.value);
+                }
+
+                _default = value;
+            }
         }
 
         /// <summary>
@@ -96,7 +105,7 @@ namespace System
         {
             if (unhandledException == null)
             {
-                throw new ArgumentNullException(nameof(unhandledException));
+                ThrowHelper.ThrowArgumentNullException(ExceptionArgument.unhandledException);
             }
 
             if (!TryRecoverOnUnhandledException(unhandledException))

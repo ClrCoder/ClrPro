@@ -3,7 +3,6 @@
 
 namespace System.Threading
 {
-    using System.Diagnostics;
     using System.Diagnostics.CodeAnalysis;
     using System.Runtime.CompilerServices;
     using System.Security;
@@ -68,6 +67,11 @@ namespace System.Threading
         public ClosingStatus ClosingStatus => atomicState.Read().Status;
 
         /// <summary>
+        ///     The terminate reason exception or <see langword="null" /> if the object was closed gracefully.
+        /// </summary>
+        public Exception? TerminateReason { get; }
+
+        /// <summary>
         ///     The value that returns by the <see cref="IAsyncCodeScopeExtension.IsRethrowRequired" />.
         /// </summary>
         protected bool ScopeErrorReThrowRequired { get; set; } = true;
@@ -79,12 +83,8 @@ namespace System.Threading
         ///     Should be called only once after the object switched from <see cref="System.ClosingStatus.CloseRequested" /> to
         ///     <see cref="System.ClosingStatus.Closing" />.
         /// </remarks>
-        protected void NotifyPendingOperationsCompleted()
+        protected void OnPendingOperationsCompletedUnsafe()
         {
-            Debug.Assert(
-                atomicState.Read().Status == ClosingStatus.Closing,
-                "Notification should be called in appropriate state.");
-
             var task = CloseAsync(null);
 
             // Subscribing continuation of the task.
@@ -169,8 +169,8 @@ namespace System.Threading
                 nextState = observedState;
                 if (observedState.Status != ClosingStatus.Closing)
                 {
-                    throw new InvalidOperationException(
-                        "OnCloseCompleted should be called in the 'Closing' state at the end of the closing operation.");
+                    ThrowHelper.ThrowInvalidOperationException(
+                        ExceptionMessage.OnCloseCompletedShouldBeCalledInClosingState);
                 }
 
                 nextState.SetClosed();

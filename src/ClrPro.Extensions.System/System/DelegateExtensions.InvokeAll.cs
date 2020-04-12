@@ -6,6 +6,7 @@ namespace System
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Runtime.CompilerServices;
+    using ClrPro;
 
     /// <content>
     ///     <c>InvokeAll</c> methods implementation.
@@ -35,7 +36,7 @@ namespace System
         {
             if (args == null)
             {
-                throw new ArgumentNullException(nameof(args));
+                ThrowHelper.ThrowArgumentNullException(ExceptionArgument.args);
             }
 
             // ReSharper disable once InvertIf
@@ -55,10 +56,7 @@ namespace System
                     }
                     catch (Exception ex) when (isRedirectablePredicate == null || isRedirectablePredicate(ex))
                     {
-                        if (innerExceptions == null)
-                        {
-                            innerExceptions = new List<Exception>();
-                        }
+                        innerExceptions ??= new List<Exception>();
 
                         innerExceptions.Add(ex);
                     }
@@ -66,7 +64,7 @@ namespace System
 
                 if (innerExceptions != null)
                 {
-                    throw new AggregateException(innerExceptions);
+                    ThrowHelper.ThrowAggregateException(innerExceptions);
                 }
             }
         }
@@ -95,7 +93,7 @@ namespace System
         {
             if (args == null)
             {
-                throw new ArgumentNullException(nameof(args));
+                ThrowHelper.ThrowArgumentNullException(ExceptionArgument.args);
             }
 
             // ReSharper disable once InvertIf
@@ -115,10 +113,7 @@ namespace System
                     }
                     catch (Exception ex) when (isRedirectablePredicate == null || isRedirectablePredicate(ex))
                     {
-                        if (innerExceptions == null)
-                        {
-                            innerExceptions = new List<Exception>();
-                        }
+                        innerExceptions ??= new List<Exception>();
 
                         innerExceptions.Add(ex);
                     }
@@ -126,7 +121,7 @@ namespace System
 
                 if (innerExceptions != null)
                 {
-                    throw new AggregateException(innerExceptions);
+                    ThrowHelper.ThrowAggregateException(innerExceptions);
                 }
             }
         }
@@ -165,10 +160,7 @@ namespace System
                     }
                     catch (Exception ex) when (isRedirectablePredicate == null || isRedirectablePredicate(ex))
                     {
-                        if (innerExceptions == null)
-                        {
-                            innerExceptions = new List<Exception>();
-                        }
+                        innerExceptions ??= new List<Exception>();
 
                         innerExceptions.Add(ex);
                     }
@@ -176,7 +168,7 @@ namespace System
 
                 if (innerExceptions != null)
                 {
-                    throw new AggregateException(innerExceptions);
+                    ThrowHelper.ThrowAggregateException(innerExceptions);
                 }
             }
         }
@@ -218,10 +210,7 @@ namespace System
                     }
                     catch (Exception ex) when (isRedirectablePredicate == null || isRedirectablePredicate(ex))
                     {
-                        if (innerExceptions == null)
-                        {
-                            innerExceptions = new List<Exception>();
-                        }
+                        innerExceptions ??= new List<Exception>();
 
                         innerExceptions.Add(ex);
                     }
@@ -229,7 +218,7 @@ namespace System
 
                 if (innerExceptions != null)
                 {
-                    throw new AggregateException(innerExceptions);
+                    ThrowHelper.ThrowAggregateException(innerExceptions);
                 }
             }
         }
@@ -274,10 +263,7 @@ namespace System
                     }
                     catch (Exception ex) when (isRedirectablePredicate == null || isRedirectablePredicate(ex))
                     {
-                        if (innerExceptions == null)
-                        {
-                            innerExceptions = new List<Exception>();
-                        }
+                        innerExceptions ??= new List<Exception>();
 
                         innerExceptions.Add(ex);
                     }
@@ -285,7 +271,7 @@ namespace System
 
                 if (innerExceptions != null)
                 {
-                    throw new AggregateException(innerExceptions);
+                    ThrowHelper.ThrowAggregateException(innerExceptions);
                 }
             }
         }
@@ -333,10 +319,7 @@ namespace System
                     }
                     catch (Exception ex) when (isRedirectablePredicate == null || isRedirectablePredicate(ex))
                     {
-                        if (innerExceptions == null)
-                        {
-                            innerExceptions = new List<Exception>();
-                        }
+                        innerExceptions ??= new List<Exception>();
 
                         innerExceptions.Add(ex);
                     }
@@ -344,7 +327,7 @@ namespace System
 
                 if (innerExceptions != null)
                 {
-                    throw new AggregateException(innerExceptions);
+                    ThrowHelper.ThrowAggregateException(innerExceptions);
                 }
             }
         }
@@ -395,10 +378,7 @@ namespace System
                     }
                     catch (Exception ex) when (isRedirectablePredicate == null || isRedirectablePredicate(ex))
                     {
-                        if (innerExceptions == null)
-                        {
-                            innerExceptions = new List<Exception>();
-                        }
+                        innerExceptions ??= new List<Exception>();
 
                         innerExceptions.Add(ex);
                     }
@@ -406,7 +386,7 @@ namespace System
 
                 if (innerExceptions != null)
                 {
-                    throw new AggregateException(innerExceptions);
+                    ThrowHelper.ThrowAggregateException(innerExceptions);
                 }
             }
         }
@@ -460,10 +440,7 @@ namespace System
                     }
                     catch (Exception ex) when (isRedirectablePredicate == null || isRedirectablePredicate(ex))
                     {
-                        if (innerExceptions == null)
-                        {
-                            innerExceptions = new List<Exception>();
-                        }
+                        innerExceptions ??= new List<Exception>();
 
                         innerExceptions.Add(ex);
                     }
@@ -471,7 +448,7 @@ namespace System
 
                 if (innerExceptions != null)
                 {
-                    throw new AggregateException(innerExceptions);
+                    ThrowHelper.ThrowAggregateException(innerExceptions);
                 }
             }
         }
@@ -528,10 +505,7 @@ namespace System
                     }
                     catch (Exception ex) when (isRedirectablePredicate == null || isRedirectablePredicate(ex))
                     {
-                        if (innerExceptions == null)
-                        {
-                            innerExceptions = new List<Exception>();
-                        }
+                        innerExceptions ??= new List<Exception>();
 
                         innerExceptions.Add(ex);
                     }
@@ -539,7 +513,7 @@ namespace System
 
                 if (innerExceptions != null)
                 {
-                    throw new AggregateException(innerExceptions);
+                    ThrowHelper.ThrowAggregateException(innerExceptions);
                 }
             }
         }
@@ -599,10 +573,7 @@ namespace System
                     }
                     catch (Exception ex) when (isRedirectablePredicate == null || isRedirectablePredicate(ex))
                     {
-                        if (innerExceptions == null)
-                        {
-                            innerExceptions = new List<Exception>();
-                        }
+                        innerExceptions ??= new List<Exception>();
 
                         innerExceptions.Add(ex);
                     }
@@ -610,7 +581,7 @@ namespace System
 
                 if (innerExceptions != null)
                 {
-                    throw new AggregateException(innerExceptions);
+                    ThrowHelper.ThrowAggregateException(innerExceptions);
                 }
             }
         }
@@ -673,10 +644,7 @@ namespace System
                     }
                     catch (Exception ex) when (isRedirectablePredicate == null || isRedirectablePredicate(ex))
                     {
-                        if (innerExceptions == null)
-                        {
-                            innerExceptions = new List<Exception>();
-                        }
+                        innerExceptions ??= new List<Exception>();
 
                         innerExceptions.Add(ex);
                     }
@@ -684,7 +652,7 @@ namespace System
 
                 if (innerExceptions != null)
                 {
-                    throw new AggregateException(innerExceptions);
+                    ThrowHelper.ThrowAggregateException(innerExceptions);
                 }
             }
         }

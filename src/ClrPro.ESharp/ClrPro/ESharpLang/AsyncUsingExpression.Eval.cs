@@ -4,6 +4,7 @@
 namespace ClrPro.ESharpLang
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Runtime.CompilerServices;
     using System.Threading.Tasks;
 
@@ -24,11 +25,15 @@ namespace ClrPro.ESharpLang
         ///     unconditionally.
         /// </remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        [SuppressMessage(
+            "Design",
+            "CA1062:Validate arguments of public methods",
+            Justification = "The argument has been validated.")]
         public async ValueTask<TResult> Eval<TResult>(Func<TUsingVar, TResult> code)
         {
             if (code == null)
             {
-                throw new ArgumentNullException(nameof(code));
+                ThrowHelper.ThrowArgumentNullException(ExceptionArgument.code);
             }
 
             if (ScopeExtension == null)
@@ -63,11 +68,15 @@ namespace ClrPro.ESharpLang
         ///     unconditionally.
         /// </remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        [SuppressMessage(
+            "Design",
+            "CA1062:Validate arguments of public methods",
+            Justification = "The argument has been validated.")]
         public async ValueTask<TResult> Eval<TResult>(Func<TResult> code)
         {
             if (code == null)
             {
-                throw new ArgumentNullException(nameof(code));
+                ThrowHelper.ThrowArgumentNullException(ExceptionArgument.code);
             }
 
             if (ScopeExtension == null)

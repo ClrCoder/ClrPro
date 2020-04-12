@@ -3,6 +3,7 @@
 
 namespace System
 {
+    using System.Diagnostics.CodeAnalysis;
     using JetBrains.Annotations;
 
     /// <summary>
@@ -17,16 +18,20 @@ namespace System
         /// </summary>
         /// <param name="closeable">The object whose state to check.</param>
         /// <exception cref="ExplicitCloseMissingException">The object wasn't explicitly closed.</exception>
+        [SuppressMessage(
+            "Design",
+            "CA1062:Validate arguments of public methods",
+            Justification = "The argument has been validated.")]
         public static void VerifyCloseRequested(this IClosingStatusObservable closeable)
         {
             if (closeable == null)
             {
-                throw new ArgumentNullException(nameof(closeable));
+                ThrowHelper.ThrowArgumentNullException(ExceptionArgument.closeable);
             }
 
             if (closeable.ClosingStatus == ClosingStatus.Alive)
             {
-                throw new ExplicitCloseMissingException(closeable);
+                ThrowHelper.ThrowExplicitCloseMissingException(closeable);
             }
         }
     }

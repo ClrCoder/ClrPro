@@ -12,18 +12,18 @@ namespace ClrPro.Extensions.BusinessDomain
     public enum UowCloseAction
     {
         /// <summary>
-        ///     Release resources on close, commit operation already performed.
-        /// </summary>
-        Release,
-
-        /// <summary>
         ///     Commit changes on close.
         /// </summary>
-        Commit,
+        Commit = default,
 
         /// <summary>
         ///     Rollback canes on close.
         /// </summary>
         Rollback,
+
+        /// <summary>
+        ///     Release resources on close, commit operation already performed.
+        /// </summary>
+        Release,
     }
 }

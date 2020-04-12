@@ -213,7 +213,7 @@ namespace System.Threading.Tasks.Sources
         {
             if (continuation == null)
             {
-                throw new ArgumentNullException(nameof(continuation));
+                ThrowHelper.ThrowArgumentNullException(ExceptionArgument.continuation);
             }
 
             ValidateToken(token);

@@ -64,7 +64,7 @@ namespace System.Threading
 
                 if (switchedToClosingState)
                 {
-                    NotifyPendingOperationsCompleted();
+                    OnPendingOperationsCompletedUnsafe();
                 }
             }
 

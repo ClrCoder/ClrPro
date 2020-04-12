@@ -3,6 +3,8 @@
 
 namespace System.Threading.Tasks
 {
+    using System.Diagnostics.CodeAnalysis;
+    using System.Runtime.CompilerServices;
     using System.Runtime.ExceptionServices;
     using JetBrains.Annotations;
 
@@ -47,11 +49,17 @@ namespace System.Threading.Tasks
         /// </summary>
         /// <param name="dispatchInfo">The exception with the captured stacktrace.</param>
         /// <returns>The created instance.</returns>
-        public static TaskExceptionHolder FromDispatchInfo([NotNull] ExceptionDispatchInfo dispatchInfo)
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        [SuppressMessage(
+            "Design",
+            "CA1062:Validate arguments of public methods",
+            Justification = "The argument has been validated.")]
+        public static TaskExceptionHolder FromDispatchInfo(
+            ExceptionDispatchInfo dispatchInfo)
         {
             if (dispatchInfo == null)
             {
-                throw new ArgumentNullException(nameof(dispatchInfo));
+                ThrowHelper.ThrowArgumentNullException(ExceptionArgument.dispatchInfo);
             }
 
             return new TaskExceptionHolder(
@@ -64,11 +72,11 @@ namespace System.Threading.Tasks
         /// </summary>
         /// <param name="exception">The exception.</param>
         /// <returns>The created instance.</returns>
-        public static TaskExceptionHolder CaptureFromException([NotNull] Exception exception)
+        public static TaskExceptionHolder CaptureFromException(Exception exception)
         {
             if (exception == null)
             {
-                throw new ArgumentNullException(nameof(exception));
+                ThrowHelper.ThrowArgumentNullException(ExceptionArgument.exception);
             }
 
             return new TaskExceptionHolder(

@@ -3,7 +3,9 @@
 
 namespace System
 {
+    using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
+    using ClrPro;
     using JetBrains.Annotations;
 
     /// <summary>
@@ -26,6 +28,10 @@ namespace System
         /// <returns>
         ///     Async execution <c>task</c>.
         /// </returns>
+        [SuppressMessage(
+            "Design",
+            "CA1062:Validate arguments of public methods",
+            Justification = "The argument has been validated.")]
         public static async ValueTask ConfigureNoThrow(
             this ValueTask task,
             IRuntimeEnvironment runtimeEnvironment,
@@ -33,7 +39,7 @@ namespace System
         {
             if (runtimeEnvironment == null)
             {
-                throw new ArgumentNullException(nameof(runtimeEnvironment));
+                ThrowHelper.ThrowArgumentNullException(ExceptionArgument.runtimeEnvironment);
             }
 
             try
@@ -66,19 +72,23 @@ namespace System
         /// <returns>
         ///     Async execution <c>task</c>.
         /// </returns>
+        [SuppressMessage(
+            "Design",
+            "CA1062:Validate arguments of public methods",
+            Justification = "The argument has been validated.")]
         public static async ValueTask ConfigureNoThrow(
             this Task task,
-            [NotNull] IRuntimeEnvironment runtimeEnvironment,
+            IRuntimeEnvironment runtimeEnvironment,
             bool allowMute = false)
         {
             if (task == null)
             {
-                throw new ArgumentNullException(nameof(task));
+                ThrowHelper.ThrowArgumentNullException(ExceptionArgument.task);
             }
 
             if (runtimeEnvironment == null)
             {
-                throw new ArgumentNullException(nameof(runtimeEnvironment));
+                ThrowHelper.ThrowArgumentNullException(ExceptionArgument.runtimeEnvironment);
             }
 
             try
