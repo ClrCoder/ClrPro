@@ -242,6 +242,7 @@ namespace ClrPro
         public static AsyncUsingExpression<T1, Tuple<T1, T2, T3, T4, T5, T6, T7, TRest>> UsingAsync<T1, T2, T3, T4, T5,
             T6, T7, TRest>(
             Tuple<T1, T2, T3, T4, T5, T6, T7, TRest> tuple)
+            where TRest : notnull
             where T1 : IAsyncCodeScopeExtension?
         {
             if (tuple == null)

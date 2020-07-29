@@ -36,7 +36,8 @@ namespace ClrPro.ESharpLang.Tests
 
             // ReSharper disable once AccessToModifiedClosure
             Using(dummy).Do(d => { d.Should().Be(dummy); });
-            dummy.TerminateReasonException.Should().BeNull();
+            dummy.TerminateReasonException.Should().NotBeNull();
+            dummy.TerminateReasonException!.Unbox().Should().BeNull();
 
             Y(
                 () =>
@@ -50,7 +51,8 @@ namespace ClrPro.ESharpLang.Tests
                         });
                 }).Should().Throw<InvalidOperationException>();
 
-            dummy.TerminateReasonException.Should().BeOfType<InvalidOperationException>();
+            dummy.TerminateReasonException.Should().NotBeNull();
+            dummy.TerminateReasonException!.Unbox().Should().BeOfType<InvalidOperationException>();
 
             #endregion
 
@@ -60,7 +62,8 @@ namespace ClrPro.ESharpLang.Tests
 
             // ReSharper disable once AccessToModifiedClosure
             Using(dummy).Do(d => { d.Should().Be(dummy); });
-            dummy.TerminateReasonException.Should().BeNull();
+            dummy.TerminateReasonException.Should().NotBeNull();
+            dummy.TerminateReasonException!.Unbox().Should().BeNull();
 
             Y(
                 () =>
@@ -76,14 +79,80 @@ namespace ClrPro.ESharpLang.Tests
                         });
                 }).Should().Throw<InvalidOperationException>();
 
-            dummy.TerminateReasonException.Should().BeOfType<InvalidOperationException>();
+            dummy.TerminateReasonException.Should().NotBeNull();
+            dummy.TerminateReasonException!.Unbox().Should().BeOfType<InvalidOperationException>();
+
+            #endregion
+        }
+
+        [Fact]
+        public void SyncUsingDoTupleTest()
+        {
+            #region No-Pass scope
+
+            var dummy = new DummyCodeScopeExtension();
+
+            // ReSharper disable once AccessToModifiedClosure
+            Using(new Tuple<DummyCodeScopeExtension, bool>(dummy, true)).Do(() => { });
+            dummy.TerminateReasonException.Should().NotBeNull();
+            dummy.TerminateReasonException!.Unbox().Should().BeNull();
+
+            Y(
+                () =>
+                {
+                    dummy = new DummyCodeScopeExtension();
+                    Using(new Tuple<DummyCodeScopeExtension, bool>(dummy, true)).Do(
+                        () =>
+                        {
+                            // ReSharper disable once ConvertToLambdaExpression
+                            throw new InvalidOperationException("Dummy exception.");
+                        });
+                }).Should().Throw<InvalidOperationException>();
+
+            dummy.TerminateReasonException.Should().NotBeNull();
+            dummy.TerminateReasonException!.Unbox().Should().BeOfType<InvalidOperationException>();
+
+            #endregion
+
+            #region Pass scope
+
+            dummy = new DummyCodeScopeExtension();
+
+            // ReSharper disable once AccessToModifiedClosure
+            Using(new Tuple<DummyCodeScopeExtension, bool>(dummy, true)).Do(d => { d.Item1.Should().Be(dummy); });
+            dummy.TerminateReasonException.Should().NotBeNull();
+            dummy.TerminateReasonException!.Unbox().Should().BeNull();
+
+            Y(
+                () =>
+                {
+                    dummy = new DummyCodeScopeExtension();
+                    Using(new Tuple<DummyCodeScopeExtension, bool>(dummy, true)).Do(
+                        d =>
+                        {
+                            d.Item1.Should().Be(dummy);
+
+                            // ReSharper disable once ConvertToLambdaExpression
+                            throw new InvalidOperationException("Dummy exception.");
+                        });
+                }).Should().Throw<InvalidOperationException>();
+
+            dummy.TerminateReasonException.Should().NotBeNull();
+            dummy.TerminateReasonException!.Unbox().Should().BeOfType<InvalidOperationException>();
 
             #endregion
         }
 
         private class DummyCodeScopeExtension : ICodeScopeExtension
         {
-            public Exception? TerminateReasonException { get; private set; }
+            /// <summary>
+            ///     If the variable have no box, then on loose code scope wasn't initialized.
+            /// </summary>
+            public Box<Exception?>? TerminateReasonException { get; private set; }
+
+#if NET48
+            public bool IsRethrowRequired => true;
+#endif
 
             public void OnLoseCodeScope(Exception? exception)
             {
@@ -94,6 +163,10 @@ namespace ClrPro.ESharpLang.Tests
         private class DummyAsyncCodeScopeExtension : IAsyncCodeScopeExtension
         {
             public Exception? TerminateReasonException { get; private set; }
+
+#if NET48
+            public bool IsRethrowRequired => true;
+#endif
 
             public async ValueTask OnLoseCodeScopeAsync(Exception? exception)
             {

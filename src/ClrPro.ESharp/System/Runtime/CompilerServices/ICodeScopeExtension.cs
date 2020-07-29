@@ -25,7 +25,11 @@ namespace System.Runtime.CompilerServices
         ///     In a case of exception, this property checked after the <see cref="OnLoseCodeScope" /> to determine if exception
         ///     should be rethrown.
         /// </remarks>
+#if NETSTANDARD2_0
+        bool IsRethrowRequired { get; }
+#else
         bool IsRethrowRequired => true;
+#endif
 
         /// <summary>
         ///     Executed by a language construct when the language construct loses its scope.

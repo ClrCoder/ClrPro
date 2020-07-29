@@ -395,6 +395,7 @@ Licensed under the MIT License. See LICENSE in the project root for license info
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=multicast/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=Redirectable/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=stylecop/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/UserDictionary/Words/=unboxed/@EntryIndexedValue">True</s:Boolean>
 	
 	
 	</wpf:ResourceDictionary>

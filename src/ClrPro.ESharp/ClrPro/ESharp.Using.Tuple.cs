@@ -242,6 +242,7 @@ namespace ClrPro
             TRest>(
             Tuple<T1, T2, T3, T4, T5, T6, T7, TRest> tuple)
             where T1 : ICodeScopeExtension?
+            where TRest : notnull
         {
             if (tuple == null)
             {
